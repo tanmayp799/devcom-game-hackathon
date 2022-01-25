@@ -59,8 +59,8 @@ class Ball {
 canvas = new Canvas2D();
 canvas.init("gameCanvas");
 
-ball_8 = new Ball({x:600, y:200}, 30, 1, 1); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
-ball_2 = new Ball({x:100, y:200}, 28, 2, 1);
+ball_8 = new Ball({x:0, y:0}, 30, 1, 1); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
+ball_2 = new Ball({x:100, y:100}, 28, 2, 1); 
 
 
 function updatePositions(){
