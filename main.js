@@ -48,15 +48,25 @@ class Ball {
 	getPosition(){
 		return {x: this.x, y: this.y};
 	}
+	
+	//Collision with walls function.
+	collision_walls(){
+		if(this.x == this.radius || this.x == 1200 - this.radius) this.vx = -this.vx;
+		if(this.y == this.radius || this.y == 900 - this.radius) this.vy = -this.vy;
+	}
 }
 
 canvas = new Canvas2D();
 canvas.init("gameCanvas");
 
-ball_8 = new Ball({x:0, y:0}, 30, 1, 1); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
+ball_8 = new Ball({x:600, y:200}, 30, 1, 1); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
 
 function updatePositions(){
 	ball_8.updatePosition();
+}
+
+function collisionWall(){
+	ball_8.collision_walls();
 }
 
 function draw(){
@@ -66,10 +76,11 @@ function draw(){
 
 function main_loop(){
 	updatePositions();
+	collisionWall();
 	canvas.clear();
 	draw();
 }
 
 window.onload = function(){
 	setInterval(main_loop, 2);
-};
+}
