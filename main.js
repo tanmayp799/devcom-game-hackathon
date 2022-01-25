@@ -12,6 +12,10 @@ class Canvas2D {
 	drawImg(img, pos, dimen) {
 		this.canvasWriter.drawImage(img, pos.x, pos.y, dimen.width, dimen.height);
 	}
+
+	clear(){
+		this.canvasWriter.clearRect(0,0,this.canvasObject.width, this.canvasObject.height);
+	}
 }
 
 class Ball {
@@ -24,6 +28,11 @@ class Ball {
 		this.vy = _vy;
 
 		this.selfImg = null;
+	}
+
+	updatePosition(){
+		this.x += this.vx;
+		this.y += this.vy;
 	}
 
 	setSelfImgById(id){
@@ -44,9 +53,23 @@ class Ball {
 canvas = new Canvas2D();
 canvas.init("gameCanvas");
 
-ball_8 = new Ball({x:0, y:0}, 30, 0, 0); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
+ball_8 = new Ball({x:0, y:0}, 30, 1, 1); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
 
-window.onload = function(){
+function updatePositions(){
+	ball_8.updatePosition();
+}
+
+function draw(){
 	ball_8.setSelfImgById("ball8");
 	canvas.drawImg(ball_8.selfImg, ball_8.getCornerPosition(), ball_8.getDimension());
+}
+
+function main_loop(){
+	updatePositions();
+	canvas.clear();
+	draw();
+}
+
+window.onload = function(){
+	setInterval(main_loop, 2);
 };
