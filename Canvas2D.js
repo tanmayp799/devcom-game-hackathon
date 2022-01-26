@@ -33,4 +33,9 @@ class Canvas2D {
 	clear(){
 		this.canvasWriter.clearRect(0,0,this.canvasObject.width, this.canvasObject.height);
 	}
+
+	setDimens(dimens){
+		this.canvasObject.width = dimens.width;
+		this.canvasObject.height = dimens.height;
+	}
 }

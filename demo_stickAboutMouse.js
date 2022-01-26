@@ -2,10 +2,10 @@ let canvas = new Canvas2D();
 canvas.init("gameCanvas");
 
 let img = new Image();
-img.src = "./assets/cue_stick.png"
+img.src = P_CUESTICK;
 
 imgPos = {x:100, y:50};
-imgDimens = {width: 200, height:20};
+imgDimens = {width: D_CUE_L, height:D_CUE_B};
 rPos = {x:300, y:60};
 
 function updateStick(event){

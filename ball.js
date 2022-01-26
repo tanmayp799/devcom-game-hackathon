@@ -36,7 +36,16 @@ class Ball {
 	
 	//Collision with walls function.
 	collision_walls(){
-		if(this.x == this.radius || this.x == 1200 - this.radius) this.vx = -this.vx;
-		if(this.y == this.radius || this.y == 900 - this.radius) this.vy = -this.vy;
+		if(this.x <= this.radius || this.x >= D_CANVAS_W - this.radius) this.vx = -this.vx;
+		if(this.y <= this.radius || this.y >= D_CANVAS_H - this.radius) this.vy = -this.vy;
+	}
+
+	//Ball in hole for corners as an attempt to fix the issue
+	corner_hole(){
+		if((this.x == this.radius && this.y == this.radius) || (this.x == this.radius && this.y == D_CANVAS_H - this.radius) 
+		|| (this.x == D_CANVAS_W - this.radius && this.y == this.radius) || (this.x == D_CANVAS_W - this.radius && this.y == D_CANVAS_H - this.radius)){
+			this.vy = 0;
+			this.vx = 0; //We can add a code that makes them vanish later. :)
+		}
 	}
 }
