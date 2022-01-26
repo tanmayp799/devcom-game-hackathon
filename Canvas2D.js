@@ -13,7 +13,7 @@ class Canvas2D {
 		this.canvasWriter.drawImage(img, pos.x, pos.y, dimen.width, dimen.height);
 	}
 
-	drawImg(img, pos, dimen, rotation){
+	drawImg_rotate(img, pos, dimen, rotation){
 		//NOTE: pos is the coordinate of the top-left corner of the image (about which the image is supposed to be rotated by 'rotation' radians)
 		this.canvasWriter.translate(pos.x, pos.y);
 		this.canvasWriter.rotate(rotation);
