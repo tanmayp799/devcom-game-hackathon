@@ -117,6 +117,7 @@ class Ball {
 	getVelocity(){
 		return {x: this.vx, y:this.vy};
 	}
+
 	setVelocity(vel){
 		this.vx = vel.x;
 		this.vy = vel.y;
