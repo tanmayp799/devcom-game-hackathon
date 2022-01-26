@@ -2,6 +2,8 @@ canvas = new Canvas2D();
 canvas.init("gameCanvas");
 canvas.setDimens({width: D_CANVAS_W, height: D_CANVAS_H});
 
+gameState = GS_PLAYING;
+
 ball_8 = new Ball({x:600, y:30}, D_BALL_RADIUS, 0.5, 0); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
 ball_2 = new Ball({x:200, y:200}, D_BALL_RADIUS, 2, 1);
 
@@ -31,6 +33,13 @@ function draw(){
 }
 
 function main_loop(){
+	if(gameState == GS_PLAYING){
+		//Execute code for the situation when it's players turn to adjust cue and hit the white ball
+	}
+	else if(gameState == GS_MOVING){
+		//Execute code for the situation when the balls are still moving
+	}
+
 	updatePositions();
 	collisionWall();
 	BallInHole();
