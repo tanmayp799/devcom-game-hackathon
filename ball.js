@@ -58,12 +58,12 @@ class Ball {
 	    // BALL_2.this.vx = v2*Math.sin(phi)*Math.cos(beta) - v1*Math.cos(theta)*Math.cos(delta);
 	    // BALL_2.this.vy = v2*Math.sin(phi)*Math.sin(beta) + v1*Math.cos(theta)*Math.sin(delta);
 		let finalV1 = {
-			x: v1*Math.sin(theta)*Math.cos(alpha) - v2*Math.cos(phi)*Math.cos(delta),
-			y: v1*Math.sin(theta)*Math.sin(alpha) + v2*Math.cos(phi)*Math.sin(delta)
+			x: -(v1*Math.sin(theta)*Math.cos(alpha) - v2*Math.cos(phi)*Math.cos(delta)),
+			y: -(v1*Math.sin(theta)*Math.sin(alpha) + v2*Math.cos(phi)*Math.sin(delta))
 		};
 		let finalV2 = {
-			x: v2*Math.sin(phi)*Math.cos(beta) - v1*Math.cos(theta)*Math.cos(delta),
-			y: v2*Math.sin(phi)*Math.sin(beta) + v1*Math.cos(theta)*Math.sin(delta)
+			x: -(v2*Math.sin(phi)*Math.cos(beta) - v1*Math.cos(theta)*Math.cos(delta)),
+			y: (v2*Math.sin(phi)*Math.sin(beta) + v1*Math.cos(theta)*Math.sin(delta))
 		};
 
 		return {v1: finalV1, v2: finalV2};
@@ -74,7 +74,7 @@ class Ball {
 		let delY = otherBall.y - this.y;
 		let dist = Math.sqrt( delX*delX + delY*delY);
 
-		return (dist <= this.radius + otherBall.radius + PHY_EPS);
+		return (dist <= this.radius + otherBall.radius);
 	}
 
 

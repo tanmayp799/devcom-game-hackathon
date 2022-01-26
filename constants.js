@@ -4,8 +4,8 @@ const D_BALL_RADIUS = 25;
 const D_CUE_L = 250; //cue length
 const D_CUE_B = 10; // cue breadth
 
-const D_CANVAS_W = 1200; //canvas width
-const D_CANVAS_H = 900;  //canvas height
+const D_CANVAS_W = 1000; //canvas width
+const D_CANVAS_H = 700;  //canvas height
 
 //============================================================================
 
@@ -14,7 +14,7 @@ const PHY_DEF_BALL_SPEED = 1;
 const PHY_MAX_BALL_SPEED = 10;
 const PHY_FRIC_DECELERATION = 0.01;
 
-const PHY_EPS = 1; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
+const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
 
 //============================================================================
 
