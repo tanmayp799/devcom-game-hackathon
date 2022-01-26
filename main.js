@@ -7,6 +7,37 @@ gameState = GS_PLAYING;
 ball_8 = new Ball({x:600, y:30}, D_BALL_RADIUS, 0.5, 0); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
 ball_2 = new Ball({x:200, y:200}, D_BALL_RADIUS, 2, 1);
 
+balls = []; //Index 0 corresponds to the white ball
+cueStick = null;
+
+function populateBalls(){
+	for(let i = 0; i <= 15; i++){
+		ball = new Ball(
+				{x: D_BALL_RADIUS * i, y: D_BALL_RADIUS * i},
+				D_BALL_RADIUS,
+				0,0
+			);
+		ball.setSelfImgByPath(P_BALL[i]);
+
+		balls.push(ball);
+	}
+}
+function drawBalls(){
+	for(let i = 0; i<= 15; i++) canvas.drawImg(balls[i].selfImg, balls[i].getCornerPosition(), balls[i].getDimension());
+}
+function updateBallPositions(){
+	for(let i = 0; i<= 15; i++) balls[i].updatePosition();
+}
+
+function initCueStick(){
+	if(balls.length > 0) cueStick = new CueStick(balls[0].getPosition());
+	else cueStick = new CueStick({x:0, y:0}, D_BALL_RADIUS, {width: D_CUE_L, height: D_CUE_B});
+
+	cueStick.loadSelfImg(P_CUESTICK);
+}
+function drawCueStick(){
+	//To be implemented
+}
 
 function updatePositions(){
 	ball_8.updatePosition();

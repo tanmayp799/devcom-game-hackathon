@@ -7,6 +7,8 @@ class Ball {
 		this.vx = _vx;
 		this.vy = _vy;
 
+		this.onBoard = true;
+
 		this.selfImg = null;
 	}
 
@@ -32,6 +34,9 @@ class Ball {
 	}
 	getPosition(){
 		return {x: this.x, y: this.y};
+	}
+	isOnBoard(){
+		return this.onBoard;
 	}
 	
 	//Collision with walls function.
