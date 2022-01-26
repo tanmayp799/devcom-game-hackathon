@@ -53,4 +53,7 @@ class Ball {
 			this.vx = 0; //We can add a code that makes them vanish later. :)
 		}
 	}
+	getVelocity(){
+		return{x: this.vx, y:this.vy};
+	}
 }
