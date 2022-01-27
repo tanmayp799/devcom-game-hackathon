@@ -10,10 +10,11 @@ ball_2 = new Ball({x:200, y:200}, D_BALL_RADIUS, 2, 1);
 balls = []; //Index 0 corresponds to the white ball
 cueStick = null;
 
+//========================== Game Engine Functions Start =============================
 function populateBalls(){
 	for(let i = 0; i <= 15; i++){
 		ball = new Ball(
-				{x: D_BALL_RADIUS * i, y: D_BALL_RADIUS * i},
+				{x: Math.sqrt(2) * D_BALL_RADIUS * i, y: Math.sqrt(2) * D_BALL_RADIUS * i},
 				D_BALL_RADIUS,
 				0,0
 			);
@@ -21,23 +22,49 @@ function populateBalls(){
 
 		balls.push(ball);
 	}
+
+	balls[0].x=1000;balls[0].y=600;
 }
 function drawBalls(){
 	for(let i = 0; i<= 15; i++) canvas.drawImg(balls[i].selfImg, balls[i].getCornerPosition(), balls[i].getDimension());
 }
 function updateBallPositions(){
-	for(let i = 0; i<= 15; i++) balls[i].updatePosition();
+	for(let i = 0; i<= 15; i++) {
+		balls[i].updatePosition();
+	}
+	//TODO: Add code to check collision between two balls and update ONLY IF neither of the balls are out of board
 }
 
 function initCueStick(){
-	if(balls.length > 0) cueStick = new CueStick(balls[0].getPosition());
-	else cueStick = new CueStick({x:0, y:0}, D_BALL_RADIUS, {width: D_CUE_L, height: D_CUE_B});
+	if(balls.length > 0) cueStick = new CueStick(balls[0].getPosition(), D_MIN_CUE_MARGIN, {width: D_CUE_L, height: D_CUE_B});
+	else cueStick = new CueStick({x:0, y:0}, D_MIN_CUE_MARGIN, {width: D_CUE_L, height: D_CUE_B});
 
 	cueStick.loadSelfImg(P_CUESTICK);
 }
 function drawCueStick(){
-	//To be implemented
+	canvas.drawImg_rotateAbout(cueStick.selfImg, 
+			cueStick.getCornerPosition(),
+			{width: D_CUE_L, height: D_CUE_B},
+			cueStick.angle,
+			balls[0].getPosition()
+		);
 }
+function updateCueStick(){
+	cueStick.setPosition(balls[0].getPosition());
+}
+
+function updateCueStickAngle(event){
+	if(gameState == GS_MOVING) return;
+
+	rPos = balls[0].getPosition();
+	mousePos = {x: event.clientX, y: event.clientY};
+	
+	rotationAngle = Math.atan2( (rPos.y - mousePos.y),-(mousePos.x - rPos.x) );
+
+	cueStick.setAngle(rotationAngle);cueStick.setPosition(rPos);
+}
+
+//=========================== Game Engine Functions end ===============================================
 
 function updatePositions(){
 	ball_8.updatePosition();
@@ -66,6 +93,7 @@ function draw(){
 function main_loop(){
 	if(gameState == GS_PLAYING){
 		//Execute code for the situation when it's players turn to adjust cue and hit the white ball
+		drawCueStick();
 	}
 	else if(gameState == GS_MOVING){
 		//Execute code for the situation when the balls are still moving
@@ -78,6 +106,13 @@ function main_loop(){
 	draw();
 }
 
+populateBalls();
+initCueStick();
+
 window.onload = function(){
-	setInterval(main_loop, 2);
+	// setInterval(drawBalls, 20);
+	// populateBalls();
+	drawBalls();
+	drawCueStick();
+	// canvas.drawImg(balls[0].selfImg, balls[0].getCornerPosition(), balls[0].getDimension());
 }
