@@ -23,11 +23,14 @@ class CueStick {
 	}
 
 	getCornerPosition(){ //returns the top-left corner position of the cue-stick image considering the axis point and the margin, assuming horizontal orientation pointing towards right
-		return {x: this.whiteX - this.margin - this.dimens.width, this.whiteY - this.dimens.height/2};
+		return {x: this.whiteX - this.margin - this.dimens.width, y: this.whiteY - this.dimens.height/2};
 	}
 
 	setPosition(_pos){
 		this.whiteX = _pos.x;
 		this.whiteY = _pos.y;
+	}
+	setAngle(_angle){
+		this.angle = _angle;	
 	}
 }
