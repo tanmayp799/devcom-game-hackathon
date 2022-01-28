@@ -5,14 +5,13 @@ canvas.setDimens({width: D_CANVAS_W, height: D_CANVAS_H});
 
 
 cueStick = new CueStick({x: 300, y: 300}, 50, {width: D_CUE_L, height:D_CUE_B});
-imgPosition = cueStick.getCornerPosition();
 
 let img = new Image();
 img.src = P_CUESTICK;
 img.id = "cueStick";
+imgPosition = cueStick.getCornerPosition();
 
-imgPos = {x: imgPosition.x, y: imgPosition.y};
-imgDimens = {width: D_CUE_L, height:D_CUE_B};
+canvas.drawImg(img, imgPosition, {width: D_CUE_L, height:D_CUE_B});
 
 function cueStickMargin(k)
 {
@@ -30,10 +29,15 @@ function cueStickMargin(k)
         if(cueStick.margin < D_MIN_CUE_MARGIN){
             alert("Min power reached");
             return;
-        }
+        } 
         cueStick.margin -= 1;
     }
     console.log(cueStick.margin);
+    imgPosition = cueStick.getCornerPosition();
+    canvas.clear();
+    canvas.drawImg(img, imgPosition, {width: D_CUE_L, height:D_CUE_B});
 }
+
+
 
 document.onkeydown = cueStickMargin;
