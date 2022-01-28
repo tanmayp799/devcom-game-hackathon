@@ -47,6 +47,7 @@ function updateBallPositions(){
 			}
 		}
 	}
+	
 	//TODO: Add code to check collision between two balls and update ONLY IF neither of the balls are out of board
 }
 
