@@ -1,20 +1,25 @@
 let canvas = new Canvas2D();
 canvas.init("gameCanvas");
+canvas.setDimens({
+	width: D_CANVAS_W,
+	height: D_CANVAS_H
+});
 
-ball_8 = new Ball({x:100,y:110}, D_BALL_RADIUS, 10, 0);ball_8.setSelfImgByPath(P_8BALL);
-ball_2 = new Ball({x:500,y:100}, D_BALL_RADIUS, 0, 0);ball_2.setSelfImgByPath(P_2BALL);
+ball_8 = new Ball({x:100,y:100}, D_BALL_RADIUS, -5, -5);ball_8.setSelfImgByPath(P_8BALL);
+ball_2 = new Ball({x: D_BALL_RADIUS + 0.3, y: D_BALL_RADIUS}, D_BALL_RADIUS, 0, 0);ball_2.setSelfImgByPath(P_2BALL);
 
 function updatePositions(){
 	ball_8.updatePosition();
 	ball_2.updatePosition();
 
 	if(ball_8.isCollidingWith(ball_2)){
-		console.log("Collided");
+		// console.log("Collided");
 		// v8 = ball_8.getVelocity();v2 = ball_2.getVelocity();
 		// fv = {v1: {x: v2.x, y: 0}, v2: {x: v8.x, y: 0}};
-		fv = Ball.velocityAfterCollision(ball_8, ball_2);
+		fv = Ball.stateAfterCollision(ball_8, ball_2);
 
 		ball_8.setVelocity(fv.v1);ball_2.setVelocity(fv.v2);
+		ball_8.setPosition(fv.p1);ball_2.setPosition(fv.p2);
 		console.log(ball_8.getVelocity());console.log(ball_2.getVelocity());
 	}
 }

@@ -14,7 +14,7 @@ const PHY_DEF_BALL_SPEED = 1;
 const PHY_MAX_BALL_SPEED = 10;
 const PHY_FRIC_DECELERATION = 0.01;
 
-const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
+const PHY_EPS = 1; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
 
 //============================================================================
 
