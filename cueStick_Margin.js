@@ -21,7 +21,7 @@ function cueStickMargin(k)
             alert("Max power reaches"); 
             return;
         }
-        cueStick.margin += 1;
+        cueStick.margin += D_MARGIN_INC;
     }
 
     if(k.keyCode == 83)
@@ -30,7 +30,7 @@ function cueStickMargin(k)
             alert("Min power reached");
             return;
         } 
-        cueStick.margin -= 1;
+        cueStick.margin -= D_MARGIN_INC;
     }
     console.log(cueStick.margin);
     imgPosition = cueStick.getCornerPosition();
