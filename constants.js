@@ -10,6 +10,7 @@ const D_CANVAS_H = 900;  //canvas height
 const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 50;
 const D_MIN_CUE_MARGIN = D_MIN_CUE_DIST + D_BALL_RADIUS;
 const D_MAX_CUE_MARGIN = D_MAX_CUE_DIST + D_BALL_RADIUS;
+const D_MARGIN_INC = 1;
 
 //============================================================================
 
