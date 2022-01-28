@@ -2,7 +2,7 @@ canvas = new Canvas2D();
 canvas.init("gameCanvas");
 canvas.setDimens({width: D_CANVAS_W, height: D_CANVAS_H});
 
-gameState = GS_PLAYING;
+gameState = GS_UNDEFINED;
 
 ball_8 = new Ball({x:600, y:30}, D_BALL_RADIUS, 0.5, 0); //If all works fine, this should draw a quarter of the 8-ball, centered at the top-left corner of the canvas
 ball_2 = new Ball({x:200, y:200}, D_BALL_RADIUS, 2, 1);
@@ -63,6 +63,11 @@ function updateCueStickAngle(event){
 
 	cueStick.setAngle(rotationAngle);cueStick.setPosition(rPos);
 }
+function updateCueStickPower(key){
+	if(gameState == GS_MOVING) return;
+    if(k.keyCode == 87 && cueStick.margin <= D_MAX_CUE_MARGIN) cueStick.margin += D_MARGIN_INC;
+    if(k.keyCode == 83 && cueStick.margin > D_MIN_CUE_MARGIN) cueStick.margin -= D_MARGIN_INC;
+}
 //=========================== Game Engine Functions end ===============================================
 
 function updatePositions(){
@@ -107,6 +112,12 @@ function main_loop(){
 
 populateBalls();
 initCueStick();
+document.addEventListener('mousemove', (event)=>{
+	updateCueStickAngle(event);
+});
+document.addEventListener('onkeydown', (event)=>{
+	updateCueStickPower(event);
+})
 
 window.onload = function(){
 	// setInterval(drawBalls, 20);
