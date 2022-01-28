@@ -30,4 +30,7 @@ class CueStick {
 		this.whiteX = _pos.x;
 		this.whiteY = _pos.y;
 	}
+	setAngle(_angle){
+		this.angle = _angle;	
+	}
 }

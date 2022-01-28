@@ -13,8 +13,13 @@ class Ball {
 	}
 
 	updatePosition(){
+		if(!this.onBoard) return;
+
 		this.x += this.vx;
 		this.y += this.vy;
+
+		this.collision_walls();
+		this.corner_hole();
 	}
 
 	static velocityAfterCollision_old(BALL_1, BALL_2){
@@ -160,8 +165,9 @@ class Ball {
 	corner_hole(){
 		if((this.x == this.radius && this.y == this.radius) || (this.x == this.radius && this.y == D_CANVAS_H - this.radius) 
 		|| (this.x == D_CANVAS_W - this.radius && this.y == this.radius) || (this.x == D_CANVAS_W - this.radius && this.y == D_CANVAS_H - this.radius)){
-			this.vy = 0;
-			this.vx = 0; //We can add a code that makes them vanish later. :)
+			this.onBoard = false;
+			this.vy = - 2*this.radius;
+			this.vx = - 2*this.radius; //We can add a code that makes them vanish later. :)
 		}
 	}
 

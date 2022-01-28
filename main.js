@@ -63,7 +63,6 @@ function updateCueStickAngle(event){
 
 	cueStick.setAngle(rotationAngle);cueStick.setPosition(rPos);
 }
-
 //=========================== Game Engine Functions end ===============================================
 
 function updatePositions(){
