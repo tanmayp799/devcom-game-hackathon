@@ -54,6 +54,8 @@ function updateCueStick(){
 }
 
 function updateCueStickAngle(event){
+	if(gameState == GS_MOVING) return;
+
 	rPos = balls[0].getPosition();
 	mousePos = {x: event.clientX, y: event.clientY};
 	
@@ -61,7 +63,6 @@ function updateCueStickAngle(event){
 
 	cueStick.setAngle(rotationAngle);cueStick.setPosition(rPos);
 }
-
 //=========================== Game Engine Functions end ===============================================
 
 function updatePositions(){
@@ -91,6 +92,7 @@ function draw(){
 function main_loop(){
 	if(gameState == GS_PLAYING){
 		//Execute code for the situation when it's players turn to adjust cue and hit the white ball
+		drawCueStick();
 	}
 	else if(gameState == GS_MOVING){
 		//Execute code for the situation when the balls are still moving
