@@ -53,4 +53,5 @@ function main_loop(){
 
 window.onload = function(){
 	setInterval(main_loop, 20);
+
 }
