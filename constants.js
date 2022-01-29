@@ -19,7 +19,7 @@ const PHY_DEF_BALL_SPEED = 1;
 const PHY_MAX_BALL_SPEED = 20;
 const PHY_FRIC_DECELERATION = 0.04;
 
-const PHY_EPS = 1; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
+const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
 
 //============================================================================
 
@@ -45,7 +45,7 @@ const P_BALL = [P_WBALL,P_1BALL,P_2BALL,P_3BALL,P_4BALL,P_5BALL,P_6BALL,P_7BALL,
 
 const P_CUESTICK = "./assets/cue_stick.png";
 
-const P_POOL_TABLE = "./assets/pool_table_1.png";
+const P_POOL_TABLE = "./assets/pool_table.png";
 
 
 //============================================================================
