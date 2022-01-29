@@ -32,7 +32,7 @@ function updateBallPositions(){
 	for(let i = 0; i<= NUM_BALLS; i++) {
 		balls[i].updatePosition();
 		balls[i].collision_walls();
-		updateVelocity(ball[i]);
+		balls[i].updateVelocity();
 	}
 
 	for(let i=0; i<= NUM_BALLS; i++){

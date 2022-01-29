@@ -43,14 +43,16 @@ function draw(){
 	canvas.drawImg(ball_2.selfImg, ball_2.getCornerPosition(), ball_2.getDimension());
 }
 function updateSpeed(){
-	Ball.updateVelocity(ball_2);
-	Ball.updateVelocity(ball_8);
+	ball_2.updateVelocity();
+	ball_8.updateVelocity();
+	// Ball.updateVelocity(ball_2);
+	// Ball.updateVelocity(ball_8);
 }
 
 function main_loop(){
 	updatePositions();
-	collisionWall();
-	BallInHole();
+	// collisionWall();
+	// BallInHole();
 	updateSpeed();
 	canvas.clear();
 	draw();
