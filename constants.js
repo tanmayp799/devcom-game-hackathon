@@ -45,7 +45,7 @@ const P_BALL = [P_WBALL,P_1BALL,P_2BALL,P_3BALL,P_4BALL,P_5BALL,P_6BALL,P_7BALL,
 
 const P_CUESTICK = "./assets/cue_stick.png";
 
-const P_POOL_TABLE = "./assets/pool_table_1.png";
+const P_POOL_TABLE = "./assets/pool_table.png";
 
 
 //============================================================================
