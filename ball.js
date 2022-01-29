@@ -198,7 +198,14 @@ class Ball {
 		unitVector = velocityVector.getUnitVector();
 		decel_unitVector = unitVector.getNegation();
 		decel_Vector = decel_unitVector.mult(PHY_FRIC_DECELERATION);
-		velocityVector = velocityVector.sum(decel_Vector);
-		ball.setVelocity(velocityVector);
+		if(velocityVector.getNorm() < decel_Vector.getNorm())
+		{
+			velocityVector = {x:0, y:0};
+		}
+		else
+		{
+			velocityVector = velocityVector.sum(decel_Vector);
+			ball.setVelocity(velocityVector);
+		}
 	}
 }

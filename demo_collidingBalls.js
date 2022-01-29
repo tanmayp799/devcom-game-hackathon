@@ -5,8 +5,8 @@ canvas.setDimens({
 	height: D_CANVAS_H
 });
 
-ball_8 = new Ball({x:100,y:100}, D_BALL_RADIUS, 5, 5);ball_8.setSelfImgByPath(P_8BALL);
-ball_2 = new Ball({x: D_BALL_RADIUS + 0.3, y: D_BALL_RADIUS}, D_BALL_RADIUS, 3, 0);ball_2.setSelfImgByPath(P_2BALL);
+ball_8 = new Ball({x:100,y:100}, D_BALL_RADIUS, 10, 0);ball_8.setSelfImgByPath(P_8BALL);
+ball_2 = new Ball({x: D_BALL_RADIUS + 0.3, y: D_BALL_RADIUS}, D_BALL_RADIUS, 0, 10);ball_2.setSelfImgByPath(P_2BALL);
 
 function updatePositions(){
 	ball_8.updatePosition();
