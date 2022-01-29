@@ -52,3 +52,7 @@ const P_CUESTICK = "./assets/cue_stick.png";
 const GS_PLAYING = 1;
 const GS_MOVING = 2;
 const GS_UNDEFINED = 3;
+
+//Player State
+const PS_SOLID = 4;
+const PS_STRIPE = 5;

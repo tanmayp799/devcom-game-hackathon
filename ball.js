@@ -23,6 +23,7 @@ class Ball {
 	}
 
 	updateVelocity(){
+		if(!this.onBoard) return;
 		let velocityVector = this.getVelocity_asVector2d();
 		
 		if(velocityVector.getNorm() < PHY_FRIC_DECELERATION) {
@@ -81,6 +82,8 @@ class Ball {
 	}
 
 	isCollidingWith(otherBall){
+		if(!this.isOnBoard() || !otherBall.isOnBoard()) return false;
+
 		let delX = otherBall.x - this.x;
 		let delY = otherBall.y - this.y;
 		let dist = Math.sqrt( delX*delX + delY*delY);
