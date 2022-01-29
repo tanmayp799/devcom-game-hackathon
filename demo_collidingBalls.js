@@ -42,11 +42,16 @@ function draw(){
 	ball_2.setSelfImgByPath(P_2BALL);
 	canvas.drawImg(ball_2.selfImg, ball_2.getCornerPosition(), ball_2.getDimension());
 }
+function updateSpeed(){
+	Ball.updateVelocity(ball_2);
+	Ball.updateVelocity(ball_8);
+}
 
 function main_loop(){
 	updatePositions();
 	collisionWall();
 	BallInHole();
+	updateSpeed();
 	canvas.clear();
 	draw();
 }

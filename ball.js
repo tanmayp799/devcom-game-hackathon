@@ -188,7 +188,7 @@ class Ball {
 		this.vy = vel.y;
 	}
 
-	updateVelocity(ball)
+	static updateVelocity(ball)
 	{
     	let velocityVector = new Vector2D();
 		velocityVector = ball.getVelocity_asVector2d();
