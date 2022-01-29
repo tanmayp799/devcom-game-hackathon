@@ -19,7 +19,7 @@ class Ball {
 		this.y += this.vy;
 
 		this.collision_walls();
-		// this.corner_hole();
+		this.corner_hole();
 	}
 
 	updateVelocity(){
@@ -51,8 +51,8 @@ class Ball {
 		let along1 = v1.getComponentAlong(angle_loc);let along2 = v2.getComponentAlong(angle_loc);
 		let perp1 = v1.getComponentPerp(angle_loc);let perp2 = v2.getComponentPerp(angle_loc);
 	
-		console.log(ball1.getVelocity());
-		console.log(ball1.getVelocity_asVector2d());
+		// console.log(ball1.getVelocity());
+		// console.log(ball1.getVelocity_asVector2d());
 
 		let finalV1 = perp1.sum(along2); let finalV2 = perp2.sum(along1);
 
@@ -151,81 +151,5 @@ class Ball {
 	setVelocity(vel){
 		this.vx = vel.x;
 		this.vy = vel.y;
-	}
-
-
-//!!! --- Old code, delete some time soon --- !!!
-
-	static updateVelocity_old(ball)
-	{
-    	let velocityVector = new Vector2D();
-		let unitVector = new Vector2D();
-		let decel_unitVector = new Vector2D();
-		let decel_Vector = new Vector2D();
-		velocityVector = ball.getVelocity_asVector2d();
-		unitVector = velocityVector.getUnitVector();
-		decel_unitVector = unitVector.getNegation();
-		decel_Vector = decel_unitVector.mult(PHY_FRIC_DECELERATION);
-		if(velocityVector.getNorm() < decel_Vector.getNorm())
-		{
-			velocityVector = {x:0, y:0};
-		}
-		else
-		{
-			velocityVector = velocityVector.sum(decel_Vector);
-			ball.setVelocity(velocityVector);
-		}
-	}
-
-	static velocityAfterCollision_old(BALL_1, BALL_2){
-	    var alpha, beta, theta, phi, delta; 
-	    /*
-	        Alpha = angle b/w velocity of ball1 and x-axis.
-	        Beta = angle b/w velocity of ball2 and x-axis.
-	        theta = angle b/w velocity of ball1 and line of collision.
-	        phi = angle b/w velocity of ball2 and line of collision.   
-	        delta = angle b/w line of collision and x-axis.
-	    */
-	    var vx_1, vy_1, vx_2, vy_2, v1, v2;
-	    var x_1, y_1, x_2, y_2;
-
-	    let vv1 = BALL_1.getVelocity();
-	    vx_1 = vv1.x;vy_1 = vv1.y;
-	    // {vx_1, vy_1} = BALL_1.getVelocity();
-	    alpha = Math.atan2(vy_1, vx_1);
-
-	    let vv2 = BALL_2.getVelocity();
-	    vx_2 = vv2.x;vy_2 = vv2.y;
-	    beta = Math.atan2(vy_2, vx_2);
-
-	    let p1 = BALL_1.getPosition(); let p2 = BALL_2.getPosition();
-	    x_1 = p1.x;y_1 = p1.y;
-	    x_2 = p2.x;y_2 = p2.y;
-	    // let {x_1, y_1} = BALL_1.getPosition();
-	    // let {x_2, y_2} = BALL_2.getPosition();
-
-	    delta = Math.atan2(y_2 - y_1, x_2 - x_1);
-
-	    theta = alpha + delta;
-	    phi = beta + delta;
-
-	    v1 = Math.sqrt(vx_1**2 + vy_1**2); //net velocities
-	    v2 = Math.sqrt(vx_2**2 + vy_2**2);
-	    
-	    // BALL_1.this.vx = v1*Math.sin(theta)*Math.cos(alpha) - v2*Math.cos(phi)*Math.cos(delta); //velocity after collision
-	    // BALL_1.this.vy = v1*Math.sin(theta)*Math.sin(alpha) + v2*Math.cos(phi)*Math.sin(delta);
-
-	    // BALL_2.this.vx = v2*Math.sin(phi)*Math.cos(beta) - v1*Math.cos(theta)*Math.cos(delta);
-	    // BALL_2.this.vy = v2*Math.sin(phi)*Math.sin(beta) + v1*Math.cos(theta)*Math.sin(delta);
-		let finalV1 = {
-			x: (v1*Math.sin(theta)*Math.cos(alpha) - v2*Math.cos(phi)*Math.cos(delta)),
-			y: -(v1*Math.sin(theta)*Math.sin(alpha) + v2*Math.cos(phi)*Math.sin(delta))
-		};
-		let finalV2 = {
-			x: -(v2*Math.sin(phi)*Math.cos(beta) - v1*Math.cos(theta)*Math.cos(delta)),
-			y: (v2*Math.sin(phi)*Math.sin(beta) + v1*Math.cos(theta)*Math.sin(delta))
-		};
-
-		return {v1: finalV1, v2: finalV2};
 	}
 }

@@ -1,5 +1,10 @@
-Team Name: Dev-ils
-Game Developed: <to-be-decided>
-Made by : Dheer Banker
-          Tanmay Patil
-IMPORTANT: Download transparent images (.png) otherwise it will look like image with a rectangle background.
+Team Name: Dev-ils <br>
+Game Developed: 8-Ball Pool<br>
+Made by : Dheer Banker <br>
+          Tanmay Patil<br>
+
+Salient Features:
+<ul>
+    <li>No third-party libraries used</li>
+    <li></li>
+</ul>

@@ -1,13 +1,13 @@
 //Dimensions
 const D_BALL_RADIUS = 25;
 
-const D_CUE_L = 250; //cue length
-const D_CUE_B = 10; // cue breadth
+const D_CUE_L = 500; //cue length
+const D_CUE_B = 20; // cue breadth
 
 const D_CANVAS_W = 1500; //canvas width
 const D_CANVAS_H = 900;  //canvas height
 
-const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 50;
+const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 100;
 const D_MIN_CUE_MARGIN = D_MIN_CUE_DIST + D_BALL_RADIUS;
 const D_MAX_CUE_MARGIN = D_MAX_CUE_DIST + D_BALL_RADIUS;
 const D_MARGIN_INC = 1;

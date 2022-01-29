@@ -54,7 +54,7 @@ function updateCueStick(){
 }
 
 function updateCueStickAngle(event){
-	if(gameState == GS_MOVING) return;
+	if(gameState != GS_PLAYING) return;
 
 	rPos = balls[0].getPosition();
 	mousePos = {x: event.clientX, y: event.clientY};
@@ -64,39 +64,12 @@ function updateCueStickAngle(event){
 	cueStick.setAngle(rotationAngle);cueStick.setPosition(rPos);
 }
 function updateCueStickPower(key){
-	if(gameState == GS_MOVING) return;
-    if(k.keyCode == 87 && cueStick.margin <= D_MAX_CUE_MARGIN) cueStick.margin += D_MARGIN_INC;
-    if(k.keyCode == 83 && cueStick.margin > D_MIN_CUE_MARGIN) cueStick.margin -= D_MARGIN_INC;
+	if(gameState != GS_PLAYING) return;
+    if(key.keyCode == 87 && cueStick.margin <= D_MAX_CUE_MARGIN) cueStick.margin += D_MARGIN_INC;
+    if(key.keyCode == 83 && cueStick.margin > D_MIN_CUE_MARGIN) cueStick.margin -= D_MARGIN_INC;
 }
 //=========================== Game Engine Functions end ===============================================
 
-function updatePositions(){
-	ball_8.updatePosition();
-	ball_2.updatePosition();
-}
-
-function updateVelocities(){
-	ball_2.updateVeloci
-}
-
-function collisionWall(){
-	ball_8.collision_walls();
-	ball_2.collision_walls();
-}
-
-function BallInHole(){
-	ball_8.corner_hole();
-	ball_2.corner_hole();
-}
-
-function draw(){
-	ball_8.setSelfImgByPath(P_8BALL);
-	canvas.drawImg(ball_8.selfImg, ball_8.getCornerPosition(), ball_8.getDimension());
-	
-	//ball 2
-	ball_2.setSelfImgByPath(P_2BALL);
-	canvas.drawImg(ball_2.selfImg, ball_2.getCornerPosition(), ball_2.getDimension());
-}
 
 function main_loop(){
 	if(gameState == GS_PLAYING){
@@ -106,27 +79,29 @@ function main_loop(){
 	else if(gameState == GS_MOVING){
 		//Execute code for the situation when the balls are still moving
 	}
-
-	updatePositions();
-	collisionWall();
-	BallInHole();
 	canvas.clear();
-	draw();
+
+	drawBalls();
+	drawCueStick();
 }
 
+gameState = GS_PLAYING;
 populateBalls();
 initCueStick();
 document.addEventListener('mousemove', (event)=>{
 	updateCueStickAngle(event);
 });
-document.addEventListener('onkeydown', (event)=>{
-	updateCueStickPower(event);
-})
+document.onkeydown = updateCueStickPower;
+// document.addEventListener('onkeydown', (event)=>{
+// 	updateCueStickPower(event);
+// });
 
 window.onload = function(){
 	// setInterval(drawBalls, 20);
 	// populateBalls();
 	drawBalls();
 	drawCueStick();
+
+	setInterval(main_loop, 20);
 	// canvas.drawImg(balls[0].selfImg, balls[0].getCornerPosition(), balls[0].getDimension());
 }
