@@ -191,6 +191,9 @@ class Ball {
 	static updateVelocity(ball)
 	{
     	let velocityVector = new Vector2D();
+		let unitVector = new Vector2D();
+		let decel_unitVector = new Vector2D();
+		let decel_Vector = new Vector2D();
 		velocityVector = ball.getVelocity_asVector2d();
 		unitVector = velocityVector.getUnitVector();
 		decel_unitVector = unitVector.getNegation();
