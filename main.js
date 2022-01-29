@@ -75,6 +75,10 @@ function updatePositions(){
 	ball_2.updatePosition();
 }
 
+function updateVelocities(){
+	ball_2.updateVeloci
+}
+
 function collisionWall(){
 	ball_8.collision_walls();
 	ball_2.collision_walls();

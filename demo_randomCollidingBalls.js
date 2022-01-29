@@ -32,6 +32,7 @@ function updateBallPositions(){
 	for(let i = 0; i<= NUM_BALLS; i++) {
 		balls[i].updatePosition();
 		balls[i].collision_walls();
+		balls[i].updateVelocity();
 	}
 
 	for(let i=0; i<= NUM_BALLS; i++){
@@ -47,6 +48,7 @@ function updateBallPositions(){
 			}
 		}
 	}
+
 	//TODO: Add code to check collision between two balls and update ONLY IF neither of the balls are out of board
 }
 

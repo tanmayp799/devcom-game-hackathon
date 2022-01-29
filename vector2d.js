@@ -67,4 +67,8 @@ class Vector2D {
 		return new Vector2D(x.x + y.x, x.y + y.y);
 	}
 
+	static Zero(){
+		return new Vector2D(0,0);
+	}
+
 }
