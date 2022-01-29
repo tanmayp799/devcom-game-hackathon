@@ -10,13 +10,13 @@ const D_CANVAS_H = 900;  //canvas height
 const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 100;
 const D_MIN_CUE_MARGIN = D_MIN_CUE_DIST + D_BALL_RADIUS;
 const D_MAX_CUE_MARGIN = D_MAX_CUE_DIST + D_BALL_RADIUS;
-const D_MARGIN_INC = 1;
+const D_MARGIN_INC = 2;
 
 //============================================================================
 
 //Physics
 const PHY_DEF_BALL_SPEED = 1;
-const PHY_MAX_BALL_SPEED = 10;
+const PHY_MAX_BALL_SPEED = 20;
 const PHY_FRIC_DECELERATION = 0.04;
 
 const PHY_EPS = 1; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
