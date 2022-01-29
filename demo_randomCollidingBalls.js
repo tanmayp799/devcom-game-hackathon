@@ -52,10 +52,22 @@ function updateBallPositions(){
 
 populateBalls();
 
+let poolTable_img = new Image();
+poolTable_img.src = P_POOL_TABLE;
+poolTable_img.id = "poolTable";
+poolTable_imgPosition = {x: 0, y: 0};
+
+
+function drawPoolTable(){
+canvas.drawImg(poolTable_img, poolTable_imgPosition, {width: D_CANVAS_W, height: D_CANVAS_H});
+
+}
+
 function main_loop(){
 	if(doNothing) return;
 	canvas.clear();
 	updateBallPositions();
+	drawPoolTable();
 	drawBalls();
 }
 
