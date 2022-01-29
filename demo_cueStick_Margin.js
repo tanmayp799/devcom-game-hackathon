@@ -39,5 +39,4 @@ function cueStickMargin(k)
 }
 
 
-
 document.onkeydown = cueStickMargin;

@@ -118,12 +118,12 @@ class Ball {
 	
 	//Collision with walls function.
 	collision_walls(){
-		if(this.x <= this.radius || this.x >= D_CANVAS_W - this.radius) this.vx = -this.vx;
-		if(this.y <= this.radius || this.y >= D_CANVAS_H - this.radius) this.vy = -this.vy;
+		if(this.x <= this.radius + 3*D_CANVAS_W/50 || this.x >= 64*D_CANVAS_W/75 - this.radius) this.vx = -this.vx;
+		if(this.y <= this.radius + D_CANVAS_H/9 || this.y >= 9*D_CANVAS_H/10 - this.radius) this.vy = -this.vy;
 
 		let finalX = this.x + this.vx;let finalY = this.y + this.vy;
-		if(finalX <= this.radius) this.x = this.radius;if(finalX >= D_CANVAS_W - this.radius) this.x = D_CANVAS_W - this.radius;
-		if(finalY <= this.radius) this.y = this.radius;if(finalY >= D_CANVAS_H - this.radius) this.y = D_CANVAS_H - this.radius;	 
+		if(finalX <= this.radius + 3*D_CANVAS_W/50) this.x = this.radius + 3*D_CANVAS_W/50;if(finalX >= 64*D_CANVAS_W/75 - this.radius) this.x = 64*D_CANVAS_W/75 - this.radius;
+		if(finalY <= this.radius + D_CANVAS_H/9) this.y = this.radius + D_CANVAS_H/9;if(finalY >= 9*D_CANVAS_H/10 - this.radius) this.y = 9*D_CANVAS_H/10 - this.radius;	 
 	}
 
 	//Ball in hole for corners as an attempt to fix the issue
