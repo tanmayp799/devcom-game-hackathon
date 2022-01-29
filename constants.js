@@ -54,3 +54,7 @@ const P_POOL_TABLE = "./assets/pool_table_1.png";
 const GS_PLAYING = 1;
 const GS_MOVING = 2;
 const GS_UNDEFINED = 3;
+
+//Player State
+const PS_SOLID = 4;
+const PS_STRIPE = 5;
