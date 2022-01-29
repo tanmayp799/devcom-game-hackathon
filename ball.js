@@ -187,4 +187,25 @@ class Ball {
 		this.vx = vel.x;
 		this.vy = vel.y;
 	}
+
+	static updateVelocity(ball)
+	{
+    	let velocityVector = new Vector2D();
+		let unitVector = new Vector2D();
+		let decel_unitVector = new Vector2D();
+		let decel_Vector = new Vector2D();
+		velocityVector = ball.getVelocity_asVector2d();
+		unitVector = velocityVector.getUnitVector();
+		decel_unitVector = unitVector.getNegation();
+		decel_Vector = decel_unitVector.mult(PHY_FRIC_DECELERATION);
+		if(velocityVector.getNorm() < decel_Vector.getNorm())
+		{
+			velocityVector = {x:0, y:0};
+		}
+		else
+		{
+			velocityVector = velocityVector.sum(decel_Vector);
+			ball.setVelocity(velocityVector);
+		}
+	}
 }
