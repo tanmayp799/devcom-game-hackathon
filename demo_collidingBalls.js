@@ -5,7 +5,7 @@ canvas.setDimens({
 	height: D_CANVAS_H
 });
 
-ball_8 = new Ball({x:750,y:400}, D_BALL_RADIUS, 5, 10);ball_8.setSelfImgByPath(P_8BALL);
+ball_8 = new Ball({x:200,y:10}, D_BALL_RADIUS, -1, 0);ball_8.setSelfImgByPath(P_8BALL);
 ball_2 = new Ball({x: 500, y: 500}, D_BALL_RADIUS, 0, 0);ball_2.setSelfImgByPath(P_2BALL);
 
 function updatePositions(){
@@ -54,11 +54,18 @@ function drawPoolTable(){
 
 }
 
-function printMousePos(event) {
-    console.log("x: " + event.clientX + "  y: " + event.clientY);
-  }
+// function printMousePos(event) {
+//     console.log("x: " + event.clientX + "  y: " + event.clientY);
+//   }
   
-  document.addEventListener("click", printMousePos);
+//   document.addEventListener("click", printMousePos);
+
+function getRelativeCoords(event) {
+    // return { x: event.offsetX, y: event.offsetY };
+	console.log("x: " + event.offsetX + "  y: " + event.offsetY);
+}
+
+document.addEventListener("click", getRelativeCoords);
 
 
 function main_loop(){

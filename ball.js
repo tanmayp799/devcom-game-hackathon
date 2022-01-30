@@ -156,8 +156,14 @@ class Ball {
 		let cornerPos = new Vector2D();
 		cornerPos = this.getCornerPosition();
 		
-		if(this.x <= this.radius + 3*D_CANVAS_W/50 || this.x >= 0.95*D_CANVAS_W - this.radius) this.vx = -this.vx;
-		if(this.y <= this.radius + D_CANVAS_H/9 || this.y >= 41*D_CANVAS_H/45 - this.radius) this.vy = -this.vy;
+		if(this.x <= this.radius + 80*D_CANVAS_W/1500 || this.x >= 1420*D_CANVAS_W/1500 - this.radius){
+			if(cornerPos.y <= D_CANVAS_H/10 + PHY_EPS || cornerPos.y >= 0.9*D_CANVAS_H - 2*this.radius - PHY_EPS) this.vx = this.vx;
+			else this.vx = -this.vx;
+		}
+		if(this.y <= this.radius + D_CANVAS_H/10 || this.y >= 0.9*D_CANVAS_H - this.radius){
+			if(cornerPos.x <= 80*D_CANVAS_W/1500 + PHY_EPS || cornerPos.x >= 1420*D_CANVAS_W/1500 - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.vy = this.vy;
+			else this.vy = -this.vy;
+		}
 
 		//Bottom pocket horizontal speed
 		// if(41*D_CANVAS_H/45 - cornerPos.y < 2*D_BALL_RADIUS + PHY_EPS) this.vx = this.vx;
@@ -171,8 +177,22 @@ class Ball {
 		// if(cornerPos.x > 12*D_CANVAS_W/25 - PHY_EPS && cornerPos.x < 38*D_CANVAS_W/75) this.vy = this.vy;
 
 		let finalX = this.x + this.vx;let finalY = this.y + this.vy;
-		if(finalX <= this.radius + 3*D_CANVAS_W/50) this.x = this.radius + 3*D_CANVAS_W/50;if(finalX >= 0.95*D_CANVAS_W - this.radius) this.x = 0.95*D_CANVAS_W - this.radius;
-		if(finalY <= this.radius + D_CANVAS_H/9) this.y = this.radius + D_CANVAS_H/9;if(finalY >= 41*D_CANVAS_H/45 - this.radius) this.y = 41*D_CANVAS_H/45 - this.radius;	 
+		if(finalX <= this.radius + 80*D_CANVAS_W/1500){
+			if(cornerPos.y <= D_CANVAS_H/10 + PHY_EPS || cornerPos.y >= 0.9*D_CANVAS_H - 2*this.radius - PHY_EPS) this.x = this.x;
+			else this.x = this.radius + 80*D_CANVAS_W/1500;
+		}
+		if(finalX >= 1420*D_CANVAS_W/1500 - this.radius){
+			if(cornerPos.y <= D_CANVAS_H/10 + PHY_EPS || cornerPos.y >= 0.9*D_CANVAS_H - 2*this.radius - PHY_EPS) this.x = this.x;
+			else this.x = 1420*D_CANVAS_W/1500 - this.radius;
+		}
+		if(finalY <= this.radius + D_CANVAS_H/10){
+			if(cornerPos.x <= 80*D_CANVAS_W/1500 + PHY_EPS || cornerPos.x >= 1420*D_CANVAS_W/1500 - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.y = this.y;
+			else this.y = this.radius + D_CANVAS_H/10;
+		}
+		if(finalY >= 0.9*D_CANVAS_H - this.radius){
+			if(cornerPos.x <= 80*D_CANVAS_W/1500 + PHY_EPS || cornerPos.x >= 1420*D_CANVAS_W/1500 - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.y = this.y;
+			else this.y = 0.9*D_CANVAS_H - this.radius;	 
+		}
 	}
 
 	//Ball in hole for corners as an attempt to fix the issue
