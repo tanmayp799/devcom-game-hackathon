@@ -43,7 +43,7 @@ balls[15].setPosition({x: 1090, y:500});
 
 
 
-function draw(){
+function drawInitial(){
     for(let j = 0; j<=NUM_BALLS; j++){
         canvas.drawImg(balls[j].selfImg, balls[j].getCornerPosition(), balls[j].getDimension());
     }
@@ -57,7 +57,7 @@ function drawPoolTable(){
 function main_loop(){
     canvas.clear();
     drawPoolTable();
-    draw();
+    drawInitial();
 }
 
 // ====================================================================================================

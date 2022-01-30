@@ -25,7 +25,38 @@ function populateBalls(){
 		balls.push(ball);
 	}
 
-	balls[0].x=D_CANVAS_W/5;balls[0].y=D_CANVAS_H/2;
+	//balls[0].x=D_CANVAS_W/5;balls[0].y=D_CANVAS_H/2;
+
+	//==============INITIAL POSITIONS========================//
+	balls[0].setPosition({x:413, y: 450});
+balls[1].setPosition({x: 1090, y:400});
+balls[2].setPosition({x: 1090 + 50*1.732, y: 500});
+balls[3].setPosition({x: 1090 + 25*1.732, y:425});
+balls[4].setPosition({x: 1090 + 50*1.732, y: 400});
+balls[5].setPosition({x: 1090 + 50*1.732, y: 350});
+balls[6].setPosition({x: 1090 + 25*1.732, y: 525});
+balls[7].setPosition({x: 1090 - 25*1.732, y:475});
+balls[8].setPosition({x:1090, y:450});
+balls[9].setPosition({x: 1090 - 50*1.732, y:450});
+balls[10].setPosition({x: 1090 + 25*1.732, y:475});
+balls[11].setPosition({x: 1090 + 50*1.732, y:550});
+balls[12].setPosition({x: 1090 - 25*1.732, y: 425});
+balls[13].setPosition({x: 1090 + 50*1.732, y: 450});
+balls[14].setPosition({x: 1090 + 25*1.732, y:375});
+balls[15].setPosition({x: 1090, y:500});
+
+// POOL TABLE===//
+// let poolTable_img = new Image();
+// poolTable_img.src = P_POOL_TABLE;                  NOT WORKING WHEN WRITTEN HERE. ADDED SAME CODE BELOW AND IT's WORKING FINE.
+// poolTable_img.id = "poolTable";
+// poolTable_imgPosition = {x: 0, y: 0};
+
+// function drawPoolTable(){
+//     canvas.drawImg(poolTable_img, poolTable_imgPosition, {width: D_CANVAS_W, height: D_CANVAS_H});
+
+// }
+//============================================================================//
+
 }
 function initCueStick(){
 	if(balls.length > 0) cueStick = new CueStick(balls[0].getPosition(), D_MIN_CUE_MARGIN, {width: D_CUE_L, height: D_CUE_B});
@@ -101,21 +132,33 @@ function drawBalls(){
 	for(let i = 0; i<= NUM_BALLS; i++) canvas.drawImg(balls[i].selfImg, balls[i].getCornerPosition(), balls[i].getDimension());
 }
 //=========================== Game Engine Functions end ===============================================
+//=========POOL TABLE=======================//
+let poolTable_img = new Image();
+poolTable_img.src = P_POOL_TABLE;
+poolTable_img.id = "poolTable";
+poolTable_imgPosition = {x: 0, y: 0};
 
+function drawPoolTable(){
+    canvas.drawImg(poolTable_img, poolTable_imgPosition, {width: D_CANVAS_W, height: D_CANVAS_H});
 
+}
+//=========================================================================================//
 function main_loop(){
 	canvas.clear();
 
 	if(gameState == GS_PLAYING){
 		//Execute code for the situation when it's players turn to adjust cue and hit the white ball
+		drawPoolTable();
 		drawCueStick();
 	}
 	else if(gameState == GS_MOVING){
 		//Execute code for the situation when the balls are still moving
+		drawPoolTable();
 		updateBallStates();
 		if(ballsAtRest()) gameState = GS_PLAYING;
 	}
-
+	//drawPoolTable();
+	//drawCueStick();
 	drawBalls();
 }
 
@@ -133,6 +176,7 @@ document.onkeydown = updateCueStickPower;
 window.onload = function(){
 	// setInterval(drawBalls, 20);
 	// populateBalls();
+	//drawPoolTable();
 	drawBalls();
 	drawCueStick();
 
