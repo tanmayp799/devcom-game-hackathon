@@ -5,8 +5,8 @@ canvas.setDimens({
 	height: D_CANVAS_H
 });
 
-ball_8 = new Ball({x:750,y:400}, D_BALL_RADIUS, 5, 10);ball_8.setSelfImgByPath(P_8BALL);
-ball_2 = new Ball({x: 500, y: 500}, D_BALL_RADIUS, 0, 0);ball_2.setSelfImgByPath(P_2BALL);
+ball_8 = new Ball({x:760,y:600}, D_BALL_RADIUS, 0, 10);ball_8.setSelfImgByPath(P_8BALL);
+ball_2 = new Ball({x: 500, y: 500}, D_BALL_RADIUS, 2, 0);ball_2.setSelfImgByPath(P_2BALL);
 
 function updatePositions(){
 	ball_8.updatePosition();
@@ -27,9 +27,13 @@ function collisionWall(){
 	ball_2.collision_walls();
 }
 
-function BallInHole(){
-	ball_8.corner_hole();
-	ball_2.corner_hole();
+// function BallInHole(){
+// 	ball_8.corner_hole();
+// 	ball_2.corner_hole();
+// }
+function pockets(){
+	ball_8.pocketDetector();
+	ball_2.pocketDetector();
 }
 
 function draw(){
@@ -58,16 +62,24 @@ function drawPoolTable(){
 
 }
 
-function printMousePos(event) {
-    console.log("x: " + event.clientX + "  y: " + event.clientY);
-  }
+// function printMousePos(event) {
+//     console.log("x: " + event.clientX + "  y: " + event.clientY);
+//   }
   
-  document.addEventListener("click", printMousePos);
+//   document.addEventListener("click", printMousePos);
+
+function getRelativeCoords(event) {
+    // return { x: event.offsetX, y: event.offsetY };
+	console.log("x: " + event.offsetX + "  y: " + event.offsetY);
+}
+
+document.addEventListener("click", getRelativeCoords);
 
 
 function main_loop(){
 	updatePositions();
 	collisionWall();
+	pockets();
 	canvas.clear();
 	drawPoolTable();
 	draw();
