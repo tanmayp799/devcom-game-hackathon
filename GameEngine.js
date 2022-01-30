@@ -17,6 +17,7 @@ class GameEngine{
 		this.pocketedBalls = [];
 
 		this.playerState = PS_STRIPE;
+		this.setPlayerState(PS_SOLID);
 
 		this.solidScore = 0;this.stripeScore = 0;
 	}
@@ -48,7 +49,17 @@ class GameEngine{
 	updateCueStickPosition(){
 		this.cueStick.setPosition(this.balls[0].getPosition());
 	}
-	updateCueStickAngle(event){
+	updateCueStickAngle(){
+		if(this.gameState != GS_PLAYING) return;
+
+		let rPos = this.balls[0].getPosition();
+		let mousePos = {x: this.mouseX, y: this.mouseY};
+		
+		let rotationAngle = Math.atan2( (rPos.y - mousePos.y),-(mousePos.x - rPos.x) );
+
+		this.cueStick.setAngle(rotationAngle);this.cueStick.setPosition(rPos);
+	}
+	old_updateCueStickAngle(event){
 		if(this.gameState != GS_PLAYING) return;
 
 		let rPos = this.balls[0].getPosition();
@@ -94,6 +105,20 @@ class GameEngine{
 		}	
 	}
 
+	adjustWhiteBall(newX, newY){
+		let invalidPos = false;
+		for(let i=1; i <= this.num_balls; i++){
+			if(this.balls[0].isCollidingWith(this.balls[i])) invalidPos = true;
+		}
+
+		if(!invalidPos){
+			this.balls[0].x = newX;this.balls[0].y = newY;
+			this.gameState = GS_PLAYING;
+		}else{
+			alert("Invalid position to put the ball at, please choose another position.");
+		}
+	}
+
 	ballsAtRest(){
 		for(let i=0; i <= this.num_balls; i++) if(this.balls[i].getVelocity_asVector2d().getNorm() != 0) return false;
 		return true;
@@ -107,28 +132,58 @@ class GameEngine{
 			}
 		}
 
+		let curPlayerPotScore = 0;
+
 		for(let i=0; i < newlyPocketed.length; i++){
 			if(newlyPocketed[i] == 0){
 				//Handle the pocketing of white ball by letting the other player choose where to put the ball
+				this.gameState = GS_ADJUST_WHITEBALL;
 
-				if(this.playerState == PS_SOLID) this.playerState = PS_STRIPE;
-				else if(this.playerState == PS_STRIPE) this.playerState = PS_SOLID;
+				if(this.playerState == PS_SOLID) this.setPlayerState(PS_STRIPE);
+				else if(this.playerState == PS_STRIPE) this.setPlayerState(PS_SOLID);
 			}
 			else if(newlyPocketed[i] == 8){
-				//declare the other player as the winner if current player's balls aren't all pocketed
-				//otherwise current player wins
+				if(this.playerState == PS_SOLID){
+					if(this.solidScore >= 7) this.declareWinner(PS_SOLID);
+					else this.declareWinner(PS_STRIPE);
+				}
+				if(this.playerState == PS_STRIPE){
+					if(this.stripeScore >= 7) this.declareWinner(PS_STRIPE);
+					else this.declareWinner(PS_SOLID);
+				}
 			}
-			else if(newlyPocketed[i] >= 1 && newlyPocketed[i] <= 7){
+			else if(newlyPocketed[i] >= 1 && newlyPocketed[i] <= 7){ // Solid ball potted
 				this.solidScore++;
 				this.pocketedBalls.push(newlyPocketed[i]);
+
+				if(this.playerState == PS_SOLID) curPlayerPotScore++;
+				else if(this.playerState == PS_STRIPE) curPlayerPotScore--;
 				//also change the playerState accordingly
 			}
-			else if(newlyPocketed[i] >= 9 && newlyPocketed[i] <= 15){
+			else if(newlyPocketed[i] >= 9 && newlyPocketed[i] <= 15){ //Striped ball potted
 				this.stripeScore++;
 				this.pocketedBalls.push(newlyPocketed[i]);
+
+				if(this.playerState == PS_SOLID) curPlayerPotScore++;
+				else if(this.playerState == PS_STRIPE) curPlayerPotScore--;
 				//also change the playerState accordingly
 			}
 		}
+
+		if( !( newlyPocketed.includes(0) || newlyPocketed.includes(8) ) ){
+			if(curPlayerPotScore < 0){
+				if(this.playerState == PS_SOLID) this.setPlayerState(PS_STRIPE);
+				else if(this.playerState == PS_STRIPE) this.setPlayerState(PS_SOLID);
+			}
+		}
+	}
+
+	declareWinner(winner_ps){
+		if(winner_ps == PS_SOLID) alert("Solids won!");
+		else if(winner_ps == PS_STRIPE) alert("Stripes won!");
+		else alert("No one won!")
+
+		this.resetGameEngine();
 	}
 
 	drawCueStick(){
@@ -152,14 +207,62 @@ class GameEngine{
 			}
 	}
 
+	handleMovingMouse(event){
+		const rect = this.canvas.getBoundingClientRect();
+		this.mouseX = event.clientX - rect.left;
+		this.mouseY = event.clientY - rect.top;
+
+		if(this.gameState == GS_PLAYING) this.updateCueStickAngle();
+		if(this.gameState == GS_ADJUST_WHITEBALL) this.balls[0].setPosition({x: this.mouseX, y: this.mouseY});
+	}
+	handleMouseDown(event){
+		console.log("Got Called!");
+		if(this.gameState == GS_ADJUST_WHITEBALL){
+			const rect = this.canvas.getBoundingClientRect();
+			let clickedMouseX = event.clientX - rect.left;
+			let clickedMouseY = event.clientY - rect.top;
+			
+			this.adjustWhiteBall(clickedMouseX,clickedMouseY);
+		}
+	}
+
 	isPlaying(){
 		return (this.gameState == GS_PLAYING);
 	}
 	isMoving(){
 		return (this.gameState == GS_MOVING);
 	}
+	isMovingWhiteBall(){
+		return (this.gameState == GS_ADJUST_WHITEBALL);
+	}
 
 	clearScreen(){
 		this.canvas.clear();
+	}
+
+	setPlayerState(newPlayerState){
+		this.lastPlayerState = this.playerState;
+		this.playerState = newPlayerState;
+
+		if(this.playerState != this.lastPlayerState){
+			if(this.playerState == PS_SOLID) alert("Turn changed. It's Solid's turn.");
+			else if(this.playerState == PS_STRIPE) alert("Turn changed. It's Stripe's turn.");
+		}
+	}
+
+	resetGameEngine(){
+		this.balls = [];this.initBalls();
+		this.cueStick = null;this.initCueStick();
+
+		this.gameState = GS_UNDEFINED;
+
+		this.clearScreen();
+
+		this.pocketedBalls = [];
+
+		this.playerState = PS_STRIPE;
+		this.setPlayerState(PS_SOLID);
+
+		this.solidScore = 0;this.stripeScore = 0;
 	}
 }

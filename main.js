@@ -21,6 +21,9 @@ function main_loop(){
 		gameEngine.updateBallStates();
 		if(gameEngine.ballsAtRest()) gameEngine.gameState = GS_PLAYING;
 	}
+	else if(gameEngine.isMovingWhiteBall()){
+		
+	}
 }
 
 gameEngine.gameState = GS_PLAYING;
@@ -28,8 +31,11 @@ gameEngine.initBalls();
 gameEngine.initCueStick();
 
 document.addEventListener('mousemove', (event)=>{
-	gameEngine.updateCueStickAngle(event);
+	gameEngine.handleMovingMouse(event);
 });
+document.addEventListener('click', (event)=>{
+	gameEngine.handleMouseDown(event);
+})
 document.onkeydown = handleKeyPress;
 
 
