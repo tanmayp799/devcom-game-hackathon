@@ -19,11 +19,15 @@ class Ball {
 		this.y += this.vy;
 
 		this.collision_walls();
-		this.corner_hole();
+		// this.corner_hole();
+		this.pocketDetector();
 	}
 
 	updateVelocity(){
-		if(!this.onBoard) return;
+		if(!this.onBoard){
+			this.vx = 0; this.vy = 0;
+			return;
+		}
 		let velocityVector = this.getVelocity_asVector2d();
 		
 		if(velocityVector.getNorm() < PHY_FRIC_DECELERATION) {
@@ -41,11 +45,11 @@ class Ball {
 
 
 	static stateAfterCollision(ball1, ball2, badbad = false){
-		// console.log("velocityAfterCollision called")
+		console.log("stateAfterCollision called")
 		let pos1 = ball1.getPosition_asVector2d();let pos2 = ball2.getPosition_asVector2d();
 		let delPos = pos1.sum(pos2.getNegation())
 
-		let angle_loc = Math.abs(delPos.getAngleWithX());
+		let angle_loc = (delPos.getAngleWithX());
 
 		let v1 = ball1.getVelocity_asVector2d();let v2 = ball2.getVelocity_asVector2d();
 
@@ -192,17 +196,17 @@ class Ball {
 
 	pocketDetector(){
 		//Top left pocket
-		if((this.x - 65)*(this.x - 65) + (this.y - 70)*(this.y - 70) <= 57*57) this.onBoard = false;
+		if((this.x - 65)*(this.x - 65) + (this.y - 70)*(this.y - 70) <= 70*70) this.onBoard = false;
 		//Bottom Left pocket
-		if((this.x - 69)*(this.x - 69) + (this.y - 825)*(this.y - 825) <= 53*53) this.onBoard = false;
+		if((this.x - 69)*(this.x - 69) + (this.y - 825)*(this.y - 825) <= 70*70) this.onBoard = false;
 		//Top right pocket
-		if((this.x - 1436)*(this.x - 1436) + (this.y - 70)*(this.y - 70) <= 60*60) this.onBoard = false;
+		if((this.x - 1436)*(this.x - 1436) + (this.y - 70)*(this.y - 70) <= 70*70) this.onBoard = false;
 		//Bottom right pocket
-		if((this.x - 1436)*(this.x - 1436) + (this.y - 830)*(this.y - 830) <= 60*60) this.onBoard = false;
+		if((this.x - 1436)*(this.x - 1436) + (this.y - 830)*(this.y - 830) <= 70*70) this.onBoard = false;
 		//Top middle pocket
-		if((this.x - 749)*(this.x - 749) + (this.y - 51)*(this.y - 51) <= 40*40) this.onBoard = false;
+		if((this.x - 749)*(this.x - 749) + (this.y - 51)*(this.y - 51) <= 70*70) this.onBoard = false;
 		//Bottom middle pocket
-		if((this.x - 751)*(this.x - 751) + (this.y - 849)*(this.y - 849) <= 40*40) this.onBoard = false;
+		if((this.x - 751)*(this.x - 751) + (this.y - 849)*(this.y - 849) <= 70*70) this.onBoard = false;
 
 	}
 }

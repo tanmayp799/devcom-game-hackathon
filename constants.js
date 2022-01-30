@@ -20,7 +20,7 @@ const D_BOARD_MARGIN_Y = D_CANVAS_H/10;
 //Physics
 const PHY_DEF_BALL_SPEED = 1;
 const PHY_MAX_BALL_SPEED = 20;
-const PHY_FRIC_DECELERATION = 0.04;
+const PHY_FRIC_DECELERATION = 0.03;
 
 const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
 

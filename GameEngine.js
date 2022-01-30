@@ -4,6 +4,7 @@ class GameEngine{
 
 		this.balls = [];
 		this.cueStick = null;
+		this.poolTableBg = new Image();this.poolTableBg.src = P_POOL_TABLE;
 
 		this.gameState = GS_UNDEFINED;
 
@@ -73,7 +74,10 @@ class GameEngine{
 		if(this.gameState != GS_PLAYING) return;
 	    if(keyCode == 87 && this.cueStick.margin <= D_MAX_CUE_MARGIN) this.cueStick.margin += D_MARGIN_INC;
 	    if(keyCode == 83 && this.cueStick.margin > D_MIN_CUE_MARGIN) this.cueStick.margin -= D_MARGIN_INC;
-	    if(keyCode == 13) this.releaseCueStick();
+	    if(keyCode == 13) {
+	    	this.releaseCueStick();
+	    	console.clear();
+	    }
 	}
 	releaseCueStick(){
 		let angle = this.cueStick.angle;
@@ -127,7 +131,7 @@ class GameEngine{
 	handleNewlyPocketed(){
 		let newlyPocketed = [];
 		for(let i=0; i<=this.num_balls; i++){
-			if(this.balls[i].isOnBoard() && !this.pocketedBalls.includes(i)){
+			if(!this.balls[i].isOnBoard() && !this.pocketedBalls.includes(i)){
 				newlyPocketed.push(i);
 			}
 		}
@@ -138,6 +142,7 @@ class GameEngine{
 			if(newlyPocketed[i] == 0){
 				//Handle the pocketing of white ball by letting the other player choose where to put the ball
 				this.gameState = GS_ADJUST_WHITEBALL;
+				this.balls[0].onBoard = true;
 
 				if(this.playerState == PS_SOLID) this.setPlayerState(PS_STRIPE);
 				else if(this.playerState == PS_STRIPE) this.setPlayerState(PS_SOLID);
@@ -186,6 +191,14 @@ class GameEngine{
 		this.resetGameEngine();
 	}
 
+	drawPoolTable(){
+		this.canvas.drawImg(
+			this.poolTableBg,
+			{x:0,y:0},
+			{width: D_CANVAS_W, height: D_CANVAS_H}
+		);
+	}
+
 	drawCueStick(){
 		this.canvas.drawImg_rotateAbout(
 				this.cueStick.selfImg, 
@@ -216,7 +229,6 @@ class GameEngine{
 		if(this.gameState == GS_ADJUST_WHITEBALL) this.balls[0].setPosition({x: this.mouseX, y: this.mouseY});
 	}
 	handleMouseDown(event){
-		console.log("Got Called!");
 		if(this.gameState == GS_ADJUST_WHITEBALL){
 			const rect = this.canvas.getBoundingClientRect();
 			let clickedMouseX = event.clientX - rect.left;
@@ -254,7 +266,7 @@ class GameEngine{
 		this.balls = [];this.initBalls();
 		this.cueStick = null;this.initCueStick();
 
-		this.gameState = GS_UNDEFINED;
+		this.gameState = GS_PLAYING;
 
 		this.clearScreen();
 
