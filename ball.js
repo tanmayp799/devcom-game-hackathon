@@ -221,4 +221,20 @@ class Ball {
 		this.vx = vel.x;
 		this.vy = vel.y;
 	}
+
+	pocketDetector(){
+		//Top left pocket
+		if((this.x - 65)*(this.x - 65) + (this.y - 70)*(this.y - 70) <= 57*57) this.onBoard = false;
+		//Bottom Left pocket
+		if((this.x - 69)*(this.x - 69) + (this.y - 825)*(this.y - 825) <= 53*53) this.onBoard = false;
+		//Top right pocket
+		if((this.x - 1436)*(this.x - 1436) + (this.y - 70)*(this.y - 70) <= 60*60) this.onBoard = false;
+		//Bottom right pocket
+		if((this.x - 1436)*(this.x - 1436) + (this.y - 830)*(this.y - 830) <= 60*60) this.onBoard = false;
+		//Top middle pocket
+		if((this.x - 749)*(this.x - 749) + (this.y - 51)*(this.y - 51) <= 40*40) this.onBoard = false;
+		//Bottom middle pocket
+		if((this.x - 751)*(this.x - 751) + (this.y - 849)*(this.y - 849) <= 40*40) this.onBoard = false;
+
+	}
 }
