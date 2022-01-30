@@ -1,16 +1,16 @@
 //Dimensions
 const D_BALL_RADIUS = 25;
 
-const D_CUE_L = 250; //cue length
-const D_CUE_B = 10; // cue breadth
+const D_CUE_L = 500; //cue length
+const D_CUE_B = 20; // cue breadth
 
 const D_CANVAS_W = 1500; //canvas width
 const D_CANVAS_H = 900;  //canvas height
 
-const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 50;
+const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 100;
 const D_MIN_CUE_MARGIN = D_MIN_CUE_DIST + D_BALL_RADIUS;
 const D_MAX_CUE_MARGIN = D_MAX_CUE_DIST + D_BALL_RADIUS;
-const D_MARGIN_INC = 1;
+const D_MARGIN_INC = 2;
 
 const D_BOARD_MARGIN_X = 80*D_CANVAS_W/1500
 const D_BOARD_MARGIN_Y = D_CANVAS_H/10;
@@ -19,10 +19,33 @@ const D_BOARD_MARGIN_Y = D_CANVAS_H/10;
 
 //Physics
 const PHY_DEF_BALL_SPEED = 1;
-const PHY_MAX_BALL_SPEED = 10;
-const PHY_FRIC_DECELERATION = 0.01;
+const PHY_MAX_BALL_SPEED = 20;
+const PHY_FRIC_DECELERATION = 0.04;
 
 const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
+
+//============================================================================
+
+//Initial Positions
+const BALL_INIT_POS = [
+	{x:413*D_CANVAS_W/1500, y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500, y:D_CANVAS_H/2 - 2*D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + 2 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - D_BALL_RADIUS},
+	
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - 2*D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - 4 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + 3*D_BALL_RADIUS},
+	{x: 1090 - D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + D_BALL_RADIUS},
+	{x:1090*D_CANVAS_W/1500, y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500 - 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + 4 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 - D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - 3 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500, y: D_CANVAS_H/2 + 2 * D_BALL_RADIUS}
+];
 
 //============================================================================
 
@@ -57,3 +80,8 @@ const P_POOL_TABLE = "./assets/pool_table.png";
 const GS_PLAYING = 1;
 const GS_MOVING = 2;
 const GS_UNDEFINED = 3;
+const GS_ADJUST_WHITEBALL = 6;
+
+//Player State
+const PS_SOLID = 4;
+const PS_STRIPE = -PS_SOLID;

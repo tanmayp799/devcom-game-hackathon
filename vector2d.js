@@ -14,7 +14,6 @@ class Vector2D {
 		this.y += y.y;
 	}
 
-
 	sum(y){
 		if(typeof y !== typeof this){
 			throw new TypeError("The arguments of Vector2D.sum must be of type Vector2D\n");
@@ -26,24 +25,7 @@ class Vector2D {
 	mult(scale){
 		return new Vector2D(this.x * scale, this.y * scale);
 	}
-
-	getNegation(){
-		return new Vector2D(-this.x, -this.y);
-	}
-
-	getNorm(){
-		return Math.sqrt(this.x * this.x + this.y * this.y);
-	}
-
-	getAngleWithX(){ //small positive angle is anti-clockwise, as mentioned at the top
-		return Math.atan2(this.y, this.x);
-	}
-
-	getUnitVector(){
-		let length = this.getNorm();
-		return new Vector2D(this.x/length, this.y/length);
-	}
-
+	
 	getComponentAlong(theta){ //theta is the angle of the ray with x axis along which component is demanded
 		let norm = this.getNorm();
 		let delta = Math.atan2(this.y, this.x);
@@ -59,12 +41,31 @@ class Vector2D {
 		return new Vector2D(-resNorm * Math.sin(theta), resNorm * Math.cos(theta));
 	}
 
+	getUnitVector(){
+		let length = this.getNorm();
+		return new Vector2D(this.x/length, this.y/length);
+	}
+	getNegation(){
+		return new Vector2D(-this.x, -this.y);
+	}
+	getNorm(){
+		return Math.sqrt(this.x * this.x + this.y * this.y);
+	}
+	getAngleWithX(){ //small positive angle is anti-clockwise, as mentioned at the top
+		return Math.atan2(this.y, this.x);
+	}
+
+
 	static sum(x, y){
 		if(typeof x !== typeof y){
 			throw new TypeError("The arguments of Vector2D.sum must be of type Vector2D\n");
 			return null;
 		} 
 		return new Vector2D(x.x + y.x, x.y + y.y);
+	}
+
+	static Zero(){
+		return new Vector2D(0,0);
 	}
 
 }

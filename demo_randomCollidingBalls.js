@@ -32,14 +32,15 @@ function updateBallPositions(){
 	for(let i = 0; i<= NUM_BALLS; i++) {
 		balls[i].updatePosition();
 		balls[i].collision_walls();
+		balls[i].updateVelocity();
 	}
 
 	for(let i=0; i<= NUM_BALLS; i++){
 		for(let j = i + 1; j <= NUM_BALLS; j++){
 			if(balls[i].isCollidingWith(balls[j])){
 				let fV = Ball.stateAfterCollision(balls[i], balls[j]);
-				console.log("data for ball " + i + " colliding with ball " + j);
-				console.log(balls[i].getVelocity());
+				// console.log("data for ball " + i + " colliding with ball " + j);
+				// console.log(balls[i].getVelocity());
 				balls[i].setVelocity(fV.v1);balls[j].setVelocity(fV.v2);
 				balls[i].setPosition(fV.p1);balls[j].setPosition(fV.p2);
 				// console.log(balls[i].getVelocity());
@@ -47,6 +48,7 @@ function updateBallPositions(){
 			}
 		}
 	}
+
 	//TODO: Add code to check collision between two balls and update ONLY IF neither of the balls are out of board
 }
 
@@ -64,7 +66,7 @@ canvas.drawImg(poolTable_img, poolTable_imgPosition, {width: D_CANVAS_W, height:
 }
 
 function main_loop(){
-	if(doNothing) return;
+	// if(doNothing) return;
 	canvas.clear();
 	updateBallPositions();
 	drawPoolTable();

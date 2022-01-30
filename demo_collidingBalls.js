@@ -14,8 +14,6 @@ function updatePositions(){
 
 	if(ball_8.isCollidingWith(ball_2)){
 		// console.log("Collided");
-		// v8 = ball_8.getVelocity();v2 = ball_2.getVelocity();
-		// fv = {v1: {x: v2.x, y: 0}, v2: {x: v8.x, y: 0}};
 		fv = Ball.stateAfterCollision(ball_8, ball_2);
 
 		ball_8.setVelocity(fv.v1);ball_2.setVelocity(fv.v2);
@@ -45,6 +43,12 @@ function draw(){
 	//ball 2
 	ball_2.setSelfImgByPath(P_2BALL);
 	canvas.drawImg(ball_2.selfImg, ball_2.getCornerPosition(), ball_2.getDimension());
+}
+function updateSpeed(){
+	ball_2.updateVelocity();
+	ball_8.updateVelocity();
+	// Ball.updateVelocity(ball_2);
+	// Ball.updateVelocity(ball_8);
 }
 
 	let poolTable_img = new Image();
