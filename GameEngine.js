@@ -26,7 +26,7 @@ class GameEngine{
 		let ball = null;
 		for(let i = 0; i <= this.num_balls; i++){
 			ball = new Ball(
-					{x: D_CANVAS_W * (0.5 + Math.random() * 0.5), y: (i) * D_CANVAS_H/16},
+					BALL_INIT_POS[i],
 					D_BALL_RADIUS,
 					0,0
 				);

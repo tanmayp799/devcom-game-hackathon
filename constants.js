@@ -23,6 +23,29 @@ const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EP
 
 //============================================================================
 
+//Initial Positions
+const BALL_INIT_POS = [
+	{x:413*D_CANVAS_W/1500, y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500, y:D_CANVAS_H/2 - 2*D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + 2 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - D_BALL_RADIUS},
+	
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - 2*D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - 4 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + 3*D_BALL_RADIUS},
+	{x: 1090 - D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + D_BALL_RADIUS},
+	{x:1090*D_CANVAS_W/1500, y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500 - 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 + 4 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 - D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500 + 2 * D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2},
+	{x: 1090*D_CANVAS_W/1500 + D_BALL_RADIUS * Math.sqrt(2), y: D_CANVAS_H/2 - 3 * D_BALL_RADIUS},
+	{x: 1090*D_CANVAS_W/1500, y: D_CANVAS_H/2 + 2 * D_BALL_RADIUS}
+];
+
+//============================================================================
+
 //Paths
 const P_WBALL = "./assets/white_ball.png";
 const P_1BALL = "./assets/1_ball.png";

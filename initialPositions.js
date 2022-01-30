@@ -19,6 +19,9 @@ for(let i = 0; i <= NUM_BALLS; i++){
 
     balls.push(ball);
 }
+
+for(let i=0; i <= 15; i++) balls[i].setPosition(initPos[i]);
+
 balls[0].setPosition({x:413*D_CANVAS_W/1500, y: D_CANVAS_H/2});
 balls[1].setPosition({x: 1090*D_CANVAS_W/1500, y:D_CANVAS_H/2 - 2*D_BALL_RADIUS});
 balls[2].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y: 500});
@@ -34,7 +37,7 @@ balls[11].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y:550});
 balls[12].setPosition({x: 1090*D_CANVAS_W/1500 - 25*1.732, y: 425});
 balls[13].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y: D_CANVAS_H/2});
 balls[14].setPosition({x: 1090*D_CANVAS_W/1500 + 25*1.732, y:375});
-balls[15].setPosition({x: 1090*D_CANVAS_W/1500*D_CANVAS_W/1500, y:500});
+balls[15].setPosition({x: 1090*D_CANVAS_W/1500, y:500});
 
 
 
