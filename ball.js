@@ -196,17 +196,17 @@ class Ball {
 
 	pocketDetector(){
 		//Top left pocket
-		if((this.x - 65)*(this.x - 65) + (this.y - 70)*(this.y - 70) <= 70*70) this.onBoard = false;
+		if((this.x - 65*D_CANVAS_W/1500)*(this.x - 65*D_CANVAS_W/1500) + (this.y - 70*D_CANVAS_H/900)*(this.y - 70*D_CANVAS_H/900) <= (70*D_CANVAS_W/1500)*(70*D_CANVAS_H/900)) this.onBoard = false;
 		//Bottom Left pocket
-		if((this.x - 69)*(this.x - 69) + (this.y - 825)*(this.y - 825) <= 70*70) this.onBoard = false;
+		if((this.x - 69*D_CANVAS_W/1500)*(this.x - 69*D_CANVAS_W/1500) + (this.y - 825*D_CANVAS_H/900)*(this.y - 825*D_CANVAS_H/900) <= (70*D_CANVAS_W/1500)*(70*D_CANVAS_H/900)) this.onBoard = false;
 		//Top right pocket
-		if((this.x - 1436)*(this.x - 1436) + (this.y - 70)*(this.y - 70) <= 70*70) this.onBoard = false;
+		if((this.x - 1436*D_CANVAS_W/1500)*(this.x - 1436*D_CANVAS_W/1500) + (this.y - 70*D_CANVAS_H/900)*(this.y - 70*D_CANVAS_H/900) <= (70*D_CANVAS_W/1500)*(70*D_CANVAS_H/900)) this.onBoard = false;
 		//Bottom right pocket
-		if((this.x - 1436)*(this.x - 1436) + (this.y - 830)*(this.y - 830) <= 70*70) this.onBoard = false;
+		if((this.x - 1436*D_CANVAS_W/1500)*(this.x - 1436*D_CANVAS_W/1500) + (this.y - 830*D_CANVAS_H/900)*(this.y - 830*D_CANVAS_H/900) <= (70*D_CANVAS_W/1500)*(70*D_CANVAS_H/900)) this.onBoard = false;
 		//Top middle pocket
-		if((this.x - 749)*(this.x - 749) + (this.y - 51)*(this.y - 51) <= 70*70) this.onBoard = false;
+		if((this.x - 749*D_CANVAS_W/1500)*(this.x - 749*D_CANVAS_W/1500) + (this.y - 51*D_CANVAS_H/900)*(this.y - 51*D_CANVAS_H/900) <= (70*D_CANVAS_W/1500)*(70*D_CANVAS_H/900)) this.onBoard = false;
 		//Bottom middle pocket
-		if((this.x - 751)*(this.x - 751) + (this.y - 849)*(this.y - 849) <= 70*70) this.onBoard = false;
+		if((this.x - 751*D_CANVAS_W/1500)*(this.x - 751*D_CANVAS_W/1500) + (this.y - 849*D_CANVAS_H/900)*(this.y - 849*D_CANVAS_H/900) <= (70*D_CANVAS_W/1500)*(70*D_CANVAS_H/900)) this.onBoard = false;
 
 	}
 }
