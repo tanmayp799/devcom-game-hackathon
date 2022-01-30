@@ -156,8 +156,8 @@ class Ball {
 		let cornerPos = new Vector2D();
 		cornerPos = this.getCornerPosition();
 		
-		if(this.x <= this.radius + 3*D_CANVAS_W/50 || this.x >= 64*D_CANVAS_W/75 - this.radius + 130) this.vx = -this.vx;
-		if(this.y <= this.radius + D_CANVAS_H/9 - 10 || this.y >= 41*D_CANVAS_H/45 - this.radius) this.vy = -this.vy;
+		if(this.x <= this.radius + 3*D_CANVAS_W/50 || this.x >= 0.95*D_CANVAS_W - this.radius) this.vx = -this.vx;
+		if(this.y <= this.radius + D_CANVAS_H/9 || this.y >= 41*D_CANVAS_H/45 - this.radius) this.vy = -this.vy;
 
 		//Bottom pocket horizontal speed
 		// if(41*D_CANVAS_H/45 - cornerPos.y < 2*D_BALL_RADIUS + PHY_EPS) this.vx = this.vx;
@@ -171,8 +171,8 @@ class Ball {
 		// if(cornerPos.x > 12*D_CANVAS_W/25 - PHY_EPS && cornerPos.x < 38*D_CANVAS_W/75) this.vy = this.vy;
 
 		let finalX = this.x + this.vx;let finalY = this.y + this.vy;
-		if(finalX <= this.radius + 3*D_CANVAS_W/50) this.x = this.radius + 3*D_CANVAS_W/50;if(finalX >= 64*D_CANVAS_W/75 - this.radius + 130) this.x = 64*D_CANVAS_W/75 - this.radius + 130;
-		if(finalY <= this.radius + D_CANVAS_H/9 - 10) this.y = this.radius + D_CANVAS_H/9 - 10;if(finalY >= 41*D_CANVAS_H/45 - this.radius) this.y = 41*D_CANVAS_H/45 - this.radius;	 
+		if(finalX <= this.radius + 3*D_CANVAS_W/50) this.x = this.radius + 3*D_CANVAS_W/50;if(finalX >= 0.95*D_CANVAS_W - this.radius) this.x = 0.95*D_CANVAS_W - this.radius;
+		if(finalY <= this.radius + D_CANVAS_H/9) this.y = this.radius + D_CANVAS_H/9;if(finalY >= 41*D_CANVAS_H/45 - this.radius) this.y = 41*D_CANVAS_H/45 - this.radius;	 
 	}
 
 	//Ball in hole for corners as an attempt to fix the issue
