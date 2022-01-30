@@ -19,22 +19,22 @@ for(let i = 0; i <= NUM_BALLS; i++){
 
     balls.push(ball);
 }
-balls[0].setPosition({x:413, y: 450});
-balls[1].setPosition({x: 1090, y:400});
-balls[2].setPosition({x: 1090 + 50*1.732, y: 500});
-balls[3].setPosition({x: 1090 + 25*1.732, y:425});
-balls[4].setPosition({x: 1090 + 50*1.732, y: 400});
-balls[5].setPosition({x: 1090 + 50*1.732, y: 350});
-balls[6].setPosition({x: 1090 + 25*1.732, y: 525});
+balls[0].setPosition({x:413*D_CANVAS_W/1500, y: D_CANVAS_H/2});
+balls[1].setPosition({x: 1090*D_CANVAS_W/1500, y:D_CANVAS_H/2 - 2*D_BALL_RADIUS});
+balls[2].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y: 500});
+balls[3].setPosition({x: 1090*D_CANVAS_W/1500 + 25*1.732, y:425});
+balls[4].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y: D_CANVAS_H/2 - 2*D_BALL_RADIUS});
+balls[5].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y: 350});
+balls[6].setPosition({x: 1090*D_CANVAS_W/1500 + 25*1.732, y: 525});
 balls[7].setPosition({x: 1090 - 25*1.732, y:475});
-balls[8].setPosition({x:1090, y:450});
-balls[9].setPosition({x: 1090 - 50*1.732, y:450});
-balls[10].setPosition({x: 1090 + 25*1.732, y:475});
-balls[11].setPosition({x: 1090 + 50*1.732, y:550});
-balls[12].setPosition({x: 1090 - 25*1.732, y: 425});
-balls[13].setPosition({x: 1090 + 50*1.732, y: 450});
-balls[14].setPosition({x: 1090 + 25*1.732, y:375});
-balls[15].setPosition({x: 1090, y:500});
+balls[8].setPosition({x:1090*D_CANVAS_W/1500, y:D_CANVAS_H/2});
+balls[9].setPosition({x: 1090*D_CANVAS_W/1500 - 50*1.732, y:D_CANVAS_H/2});
+balls[10].setPosition({x: 1090*D_CANVAS_W/1500 + 25*1.732, y:475});
+balls[11].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y:550});
+balls[12].setPosition({x: 1090*D_CANVAS_W/1500 - 25*1.732, y: 425});
+balls[13].setPosition({x: 1090*D_CANVAS_W/1500 + 50*1.732, y: D_CANVAS_H/2});
+balls[14].setPosition({x: 1090*D_CANVAS_W/1500 + 25*1.732, y:375});
+balls[15].setPosition({x: 1090*D_CANVAS_W/1500*D_CANVAS_W/1500, y:500});
 
 
 
