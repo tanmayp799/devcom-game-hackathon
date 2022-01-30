@@ -12,6 +12,9 @@ const D_MIN_CUE_MARGIN = D_MIN_CUE_DIST + D_BALL_RADIUS;
 const D_MAX_CUE_MARGIN = D_MAX_CUE_DIST + D_BALL_RADIUS;
 const D_MARGIN_INC = 1;
 
+const D_BOARD_MARGIN_X = 80*D_CANVAS_W/1500
+const D_BOARD_MARGIN_Y = D_CANVAS_H/10;
+
 //============================================================================
 
 //Physics

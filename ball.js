@@ -156,12 +156,12 @@ class Ball {
 		let cornerPos = new Vector2D();
 		cornerPos = this.getCornerPosition();
 		
-		if(this.x <= this.radius + 80*D_CANVAS_W/1500 || this.x >= 1420*D_CANVAS_W/1500 - this.radius){
-			if(cornerPos.y <= D_CANVAS_H/10 + PHY_EPS || cornerPos.y >= 0.9*D_CANVAS_H - 2*this.radius - PHY_EPS) this.vx = this.vx;
+		if(this.x <= this.radius + D_BOARD_MARGIN_X || this.x >= D_CANVAS_W - D_BOARD_MARGIN_X - this.radius){
+			if(this.y <= D_BOARD_MARGIN_Y + this.radius + PHY_EPS || this.y >= D_CANVAS_H - D_BOARD_MARGIN_Y - this.radius - PHY_EPS) this.vx = this.vx;
 			else this.vx = -this.vx;
 		}
-		if(this.y <= this.radius + D_CANVAS_H/10 || this.y >= 0.9*D_CANVAS_H - this.radius){
-			if(cornerPos.x <= 80*D_CANVAS_W/1500 + PHY_EPS || cornerPos.x >= 1420*D_CANVAS_W/1500 - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.vy = this.vy;
+		if(this.y <= this.radius + D_BOARD_MARGIN_Y || this.y >= D_CANVAS_H - D_BOARD_MARGIN_Y - this.radius){
+			if(cornerPos.x <= D_BOARD_MARGIN_X + PHY_EPS || cornerPos.x >= D_CANVAS_W - D_BOARD_MARGIN_X - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.vy = this.vy;
 			else this.vy = -this.vy;
 		}
 
