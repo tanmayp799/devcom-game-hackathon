@@ -38,4 +38,8 @@ class Canvas2D {
 		this.canvasObject.width = dimens.width;
 		this.canvasObject.height = dimens.height;
 	}
+
+	getBoundingClientRect(){
+		return this.canvasObject.getBoundingClientRect();
+	}
 }
