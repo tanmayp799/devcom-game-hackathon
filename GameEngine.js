@@ -4,6 +4,7 @@ class GameEngine{
 
 		this.balls = [];
 		this.cueStick = null;
+		this.aimLine = null;
 		this.poolTableBg = new Image();this.poolTableBg.src = P_POOL_TABLE;
 
 		this.gameState = GS_UNDEFINED;
@@ -225,12 +226,33 @@ class GameEngine{
 			}
 	}
 
+	drawAimLine(){
+			const ctx = this.canvas.canvasWriter;
+			
+			let rPos = this.balls[0].getPosition();
+			let mousePos = {x: this.mouseX, y: this.mouseY};
+		
+			let rotationAngle = Math.atan2( (rPos.y - mousePos.y),-(mousePos.x - rPos.x) );
+			
+			ctx.setLineDash([10, 10]);
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = 'white';
+ 			ctx.beginPath();
+			ctx.moveTo(rPos.x, rPos.y);
+			ctx.lineTo(this.balls[0].x + 5000*Math.cos(rotationAngle), this.balls[0].y + 5000*Math.sin(rotationAngle));
+			ctx.stroke();
+	}
+
 	handleMovingMouse(event){
 		const rect = this.canvas.getBoundingClientRect();
 		this.mouseX = event.clientX - rect.left;
 		this.mouseY = event.clientY - rect.top;
 
-		if(this.gameState == GS_PLAYING) this.updateCueStickAngle();
+		if(this.gameState == GS_PLAYING) {
+			this.updateCueStickAngle();
+			this.drawAimLine();
+			this.drawBalls();
+		}
 		if(this.gameState == GS_ADJUST_WHITEBALL) this.balls[0].setPosition({x: this.mouseX, y: this.mouseY});
 	}
 	handleMouseDown(event){
