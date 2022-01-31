@@ -9,6 +9,24 @@ class Canvas2D {
 		this.canvasWriter = this.canvasObject.getContext("2d");
 	}
 
+	drawText(text, pos, font, fillStyle){ //here, pos is the position of the bottom left corner of text 
+		if(fillStyle !== undefined) this.canvasWriter.fillStyle = fillStyle;
+		if(font !== undefined) this.canvasWriter.font = font;
+		
+		this.canvasWriter.fillText(text, pos.x, pos.y);
+	}
+
+	drawText_centerAt(text, centerPos, font, fillStyle){ //here, centerPos is the position of the center of text
+		if(fillStyle !== undefined) this.canvasWriter.fillStyle = fillStyle;
+		if(font !== undefined) this.canvasWriter.font = font;
+
+		let textMetrics = this.canvasWriter.measureText(text);
+		let textWidth = textMetrics.width;
+		let textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+
+		this.drawText(text, {x: centerPos.x - textWidth/2, y: centerPos.y + textHeight/2});
+	}
+
 	drawImg(img, pos, dimen) {
 		this.canvasWriter.drawImage(img, pos.x, pos.y, dimen.width, dimen.height);
 	}

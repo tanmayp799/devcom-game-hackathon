@@ -2,6 +2,8 @@ class GameEngine{
 	constructor(_canvasId, _num_balls){
 		this.num_balls = _num_balls;
 
+		this.alertString = "";
+
 		this.balls = [];
 		this.cueStick = null;
 		this.poolTableBg = new Image();this.poolTableBg.src = P_POOL_TABLE;
@@ -21,6 +23,7 @@ class GameEngine{
 		this.setPlayerState(PS_SOLID);
 
 		this.solidScore = 0;this.stripeScore = 0;
+
 	}
 
 	initBalls(){
@@ -88,6 +91,7 @@ class GameEngine{
 		this.balls[0].setVelocity(velocity);
 		this.cueStick.margin = D_MIN_CUE_MARGIN;
 		this.gameState = GS_MOVING;
+		this.alertPlayers("");
 	}
 
 	updateBallStates(){
@@ -118,8 +122,9 @@ class GameEngine{
 		if(!invalidPos){
 			this.balls[0].x = newX;this.balls[0].y = newY;
 			this.gameState = GS_PLAYING;
+			this.alertPlayers("");
 		}else{
-			alert("Invalid position to put the ball at, please choose another position.");
+			this.alertPlayers("Can't put the ball there");
 		}
 	}
 
@@ -202,6 +207,12 @@ class GameEngine{
 			{x:0,y:0},
 			{width: D_CANVAS_W, height: D_CANVAS_H}
 		);
+
+		//Draw alert text
+		this.canvas.canvasWriter.globalCompositeOperator = 'xor';
+		this.canvas.canvasWriter.fillStyle = '#2E4B38';
+		this.canvas.canvasWriter.font = "bold 30px sans-serif";
+		this.canvas.drawText_centerAt(this.alertString, {x: D_CANVAS_W/2, y:D_CANVAS_H/2});
 	}
 
 	drawCueStick(){
@@ -253,6 +264,11 @@ class GameEngine{
 		return (this.gameState == GS_ADJUST_WHITEBALL);
 	}
 
+	alertPlayers(alertText){
+		this.alertString = alertText;
+		// alert(this.alertString);
+	}
+
 	clearScreen(){
 		this.canvas.clear();
 	}
@@ -262,8 +278,11 @@ class GameEngine{
 		this.playerState = newPlayerState;
 
 		if(this.playerState != this.lastPlayerState){
-			if(this.playerState == PS_SOLID) alert("Turn changed. It's Solid's turn.");
-			else if(this.playerState == PS_STRIPE) alert("Turn changed. It's Stripe's turn.");
+			if(this.playerState == PS_SOLID){ 
+				this.alertPlayers("Solid's turn.");
+
+			}
+			else if(this.playerState == PS_STRIPE) this.alertPlayers("Stripe's turn.");
 		}
 	}
 
