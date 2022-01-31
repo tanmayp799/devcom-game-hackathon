@@ -169,8 +169,8 @@ class GameEngine{
 				this.stripeScore++;
 				this.pocketedBalls.push(newlyPocketed[i]);
 
-				if(this.playerState == PS_SOLID) curPlayerPotScore++;
-				else if(this.playerState == PS_STRIPE) curPlayerPotScore--;
+				if(this.playerState == PS_SOLID) curPlayerPotScore--;
+				else if(this.playerState == PS_STRIPE) curPlayerPotScore++;
 				//also change the playerState accordingly
 			}
 		}
@@ -180,6 +180,11 @@ class GameEngine{
 				if(this.playerState == PS_SOLID) this.setPlayerState(PS_STRIPE);
 				else if(this.playerState == PS_STRIPE) this.setPlayerState(PS_SOLID);
 			}
+		}
+
+		if(newlyPocketed.length == 0) {
+			if(this.playerState == PS_SOLID) this.setPlayerState(PS_STRIPE);
+			else if(this.playerState == PS_STRIPE) this.setPlayerState(PS_SOLID);
 		}
 	}
 

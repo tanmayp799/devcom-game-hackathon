@@ -45,7 +45,7 @@ class Ball {
 
 
 	static stateAfterCollision(ball1, ball2, badbad = false){
-		console.log("stateAfterCollision called")
+		// console.log("stateAfterCollision called")
 		let pos1 = ball1.getPosition_asVector2d();let pos2 = ball2.getPosition_asVector2d();
 		let delPos = pos1.sum(pos2.getNegation())
 
