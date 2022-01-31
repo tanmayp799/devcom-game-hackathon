@@ -1,7 +1,8 @@
-let gameEngine = new gameEngine("gameCanvas", 15);
+
+let gameEngine = new GameEngine("gameCanvas", 15);
 
 //========================== Game Engine Functions Start =============================
-//Use GameEngine to access functions
+
 //=========================== Game Engine Functions end ===============================================
 
 function handleKeyPress(key){
@@ -10,20 +11,27 @@ function handleKeyPress(key){
 
 function main_loop(){
 	gameEngine.clearScreen();
+	gameEngine.drawPoolTable();
 	gameEngine.drawBalls();
 
 	if(gameEngine.isPlaying()){
 		//Execute code for the situation when it's players turn to adjust cue and hit the white ball
 		gameEngine.drawCueStick();
+		gameEngine.drawAimLine();
+		gameEngine.drawBalls();
 	}
 	else if(gameEngine.isMoving()){
 		//Execute code for the situation when the balls are still moving
 		gameEngine.updateBallStates();
-		if(gameEngine.ballsAtRest()) gameEngine.gameState = GS_PLAYING;
+		if(gameEngine.ballsAtRest()){
+			gameEngine.handleNewlyPocketed();
+			
+			if(gameEngine.gameState == GS_MOVING) {
+				gameEngine.gameState = GS_PLAYING;
+			}
+		}
 	}
-	else if(gameEngine.isMovingWhiteBall()){
-		
-	}
+
 }
 
 gameEngine.gameState = GS_PLAYING;
@@ -35,9 +43,8 @@ document.addEventListener('mousemove', (event)=>{
 });
 document.addEventListener('click', (event)=>{
 	gameEngine.handleMouseDown(event);
-})
+});
 document.onkeydown = handleKeyPress;
-
 
 window.onload = function(){
 	setInterval(main_loop, 20);

@@ -14,13 +14,21 @@
 			background-color: blue
 		}
 
+		#gameCanvasContainer{
+			text-align: center;
+		}
+
+		#gameCanvas{
+			margin:auto;
+		}
+
 	</style>
 
 </head>
 
 <body>
 
-	<div>
+	<div id="gameCanvasContainer">
 
 		<!-- <div id="testDiv">This is a test Div</div> -->
 		<canvas id="gameCanvas" width = "1200" height = "900"></canvas>
@@ -35,7 +43,6 @@
 	<script src="ball.js"></script>
 	<script src="GameEngine.js"></script> 
 
-	<!-- <script src="./tests/test_textDrawing.js"></script> -->
-	<script src="demo_completeGamePlay.js"></script> 
+	<script src="main.js"></script> 
 </body>
 </html>

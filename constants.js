@@ -1,28 +1,31 @@
 //Dimensions
-const D_BALL_RADIUS = 25;
 
-const D_CUE_L = 500; //cue length
-const D_CUE_B = 20; // cue breadth
+const D_CANVAS_W = 0.8 * screen.width; //canvas width
+const D_CANVAS_H = 0.85 * screen.height;  //canvas height
 
-const D_CANVAS_W = 1500; //canvas width
-const D_CANVAS_H = 900;  //canvas height
+const D_BALL_RADIUS = 0.025 * D_CANVAS_H;
 
-const D_MIN_CUE_DIST = 5;const D_MAX_CUE_DIST = 100;
+const D_CUE_L = 0.5 * D_CANVAS_H; //cue length
+const D_CUE_B = 0.02 * D_CANVAS_H; // cue breadth
+
+const D_MIN_CUE_DIST = 0.0054 * D_CANVAS_H;const D_MAX_CUE_DIST = 0.11 * D_CANVAS_H;
 const D_MIN_CUE_MARGIN = D_MIN_CUE_DIST + D_BALL_RADIUS;
 const D_MAX_CUE_MARGIN = D_MAX_CUE_DIST + D_BALL_RADIUS;
-const D_MARGIN_INC = 2;
+const D_MARGIN_INC = 0.0022 * D_CANVAS_H;
 
 const D_BOARD_MARGIN_X = 80*D_CANVAS_W/1500
 const D_BOARD_MARGIN_Y = D_CANVAS_H/10;
 
+const D_AIMLINE_WIDTH = 0.0054 * D_CANVAS_H;
+
 //============================================================================
 
 //Physics
-const PHY_DEF_BALL_SPEED = 1;
-const PHY_MAX_BALL_SPEED = 35;
-const PHY_FRIC_DECELERATION = 0.07;
+const PHY_DEF_BALL_SPEED = 0.0011 * D_CANVAS_H;
+const PHY_MAX_BALL_SPEED = 0.038 * D_CANVAS_H;
+const PHY_FRIC_DECELERATION = 0.000076 * D_CANVAS_H;
 
-const PHY_EPS = 5; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
+const PHY_EPS = 0.005 * D_CANVAS_H; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
 
 //============================================================================
 

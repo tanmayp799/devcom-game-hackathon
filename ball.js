@@ -19,7 +19,6 @@ class Ball {
 		this.y += this.vy;
 
 		this.collision_walls();
-		// this.corner_hole();
 		this.pocketDetector();
 	}
 
@@ -136,17 +135,6 @@ class Ball {
 			if(cornerPos.x <= D_BOARD_MARGIN_X + PHY_EPS || cornerPos.x >= D_CANVAS_W - D_BOARD_MARGIN_X - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.vy = this.vy;
 			else this.vy = -this.vy;
 		}
-
-		//Bottom pocket horizontal speed
-		// if(41*D_CANVAS_H/45 - cornerPos.y < 2*D_BALL_RADIUS + PHY_EPS) this.vx = this.vx;
-		// //Top pocket horizontal speed
-		// if(cornerPos.y < D_CANVAS_H/9 + PHY_EPS) this.vx = this.vx;
-		// //Left pocket vertical speed
-		// if(cornerPos.x < 3*D_CANVAS_W/50 + PHY_EPS) this.vy = this.vy;
-		// //Right pocket vertical speed
-		// if(64*D_CANVAS_W/75 - cornerPos.x < 2*D_BALL_RADIUS +PHY_EPS) this.vy = this.vy;
-		// //Edge center pockets
-		// if(cornerPos.x > 12*D_CANVAS_W/25 - PHY_EPS && cornerPos.x < 38*D_CANVAS_W/75) this.vy = this.vy;
 
 		let finalX = this.x + this.vx;let finalY = this.y + this.vy;
 		if(finalX <= this.radius + 80*D_CANVAS_W/1500){

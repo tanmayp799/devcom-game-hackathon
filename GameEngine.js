@@ -246,7 +246,7 @@ class GameEngine{
 			let rotationAngle = Math.atan2( (rPos.y - mousePos.y),-(mousePos.x - rPos.x) );
 			
 			ctx.setLineDash([10, 10]);
-			ctx.lineWidth = 5;
+			ctx.lineWidth = D_AIMLINE_WIDTH;
 			ctx.strokeStyle = 'white';
  			ctx.beginPath();
 			ctx.moveTo(rPos.x, rPos.y);
