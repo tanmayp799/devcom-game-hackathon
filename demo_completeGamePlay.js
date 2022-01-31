@@ -34,7 +34,7 @@ function main_loop(){
 
 }
 
-gameEngine.gameState = GS_ADJUST_WHITEBALL;
+gameEngine.gameState = GS_PLAYING;
 gameEngine.initBalls();
 gameEngine.initCueStick();
 
