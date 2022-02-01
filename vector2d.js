@@ -14,6 +14,11 @@ class Vector2D {
 		this.y += y.y;
 	}
 
+	rotateBy(theta){
+		this.x = (this.x * Math.cos(theta)) - (this.y * Math.sin(theta));
+		this.y = (this.x * Math.sin(theta)) + (this.y * Math.cos(theta));
+	}
+
 	sum(y){
 		if(typeof y !== typeof this){
 			throw new TypeError("The arguments of Vector2D.sum must be of type Vector2D\n");
@@ -41,6 +46,16 @@ class Vector2D {
 		return new Vector2D(-resNorm * Math.sin(theta), resNorm * Math.cos(theta));
 	}
 
+	getDistanceFromLine(r, theta){ //returns algebraic distance, not absolute distance 
+		//r is a point on the said line, theta is the angle from positive x-axis
+		let m = Math.tan(theta);
+
+		let dist = (this.y - r.y) - m*(this.x - r.x);
+		dist = dist/Math.sqrt( 1 + m*m );
+
+		return dist;
+	}
+
 	getUnitVector(){
 		let length = this.getNorm();
 		return new Vector2D(this.x/length, this.y/length);
@@ -62,6 +77,13 @@ class Vector2D {
 			return null;
 		} 
 		return new Vector2D(x.x + y.x, x.y + y.y);
+	}
+
+	static unitVectorAlong(theta){
+		let res = new Vector2D(1,0);
+		res.rotateBy(theta);
+
+		return res;
 	}
 
 	static Zero(){

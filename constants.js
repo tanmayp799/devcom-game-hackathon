@@ -22,8 +22,8 @@ const D_AIMLINE_WIDTH = 0.0054 * D_CANVAS_H;
 
 //Physics
 const PHY_DEF_BALL_SPEED = 0.0011 * D_CANVAS_H;
-const PHY_MAX_BALL_SPEED = 0.038 * D_CANVAS_H;
-const PHY_FRIC_DECELERATION = 0.000076 * D_CANVAS_H;
+const PHY_MAX_BALL_SPEED = 0.03 * D_CANVAS_H;
+const PHY_FRIC_DECELERATION = 0.000057 * D_CANVAS_H;
 
 const PHY_EPS = 0.005 * D_CANVAS_H; //Planning to detect collision extended to a margin of PHY_EPS in order to avoid any 'stuck' situations
 
