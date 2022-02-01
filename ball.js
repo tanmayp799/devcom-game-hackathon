@@ -11,7 +11,7 @@ class Ball {
 
 		this.selfImg = null;
 
-		this.sound = new sound(P_SOUND);
+		this.sound_collisionWithWall = new sound(P_SOUND_COLLISION_WITH_WALL);
 	}
 
 	updatePosition(){
@@ -132,7 +132,7 @@ class Ball {
 		if(this.x <= this.radius + D_BOARD_MARGIN_X || this.x >= D_CANVAS_W - D_BOARD_MARGIN_X - this.radius){
 			if(this.y <= D_BOARD_MARGIN_Y + this.radius + PHY_EPS || this.y >= D_CANVAS_H - D_BOARD_MARGIN_Y - this.radius - PHY_EPS) this.vx = this.vx;
 			else {
-				this.sound.play();
+				this.sound_collisionWithWall.play();
 				this.vx = -this.vx;
 			}
 		}
@@ -140,7 +140,7 @@ class Ball {
 			if(cornerPos.x <= D_BOARD_MARGIN_X + PHY_EPS || cornerPos.x >= D_CANVAS_W - D_BOARD_MARGIN_X - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.vy = this.vy;
 			else {
 				this.vy = -this.vy;
-				this.sound.play();
+				this.sound_collisionWithWall.play();
 			}
 		}
 

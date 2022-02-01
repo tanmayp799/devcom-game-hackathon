@@ -12,7 +12,7 @@ class GameEngine{
 
 		this.gameState = GS_UNDEFINED;
 
-		this.CollisionSound = new sound(P_SOUND);
+		this.CollisionSound = new sound(P_SOUND_COLLISION);
 
 		this.canvas = new Canvas2D();
 		this.canvas.init(_canvasId);
