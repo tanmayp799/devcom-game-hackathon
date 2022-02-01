@@ -58,7 +58,7 @@ class Ball {
 		// console.log(ball1.getVelocity());
 		// console.log(ball1.getVelocity_asVector2d());
 
-		let finalV1 = perp1.sum(along2); let finalV2 = perp2.sum(along1);
+		let finalV1 = perp1.sum(along2).mult(PHY_COEFF_RESTITUTION); let finalV2 = perp2.sum(along1).mult(PHY_COEFF_RESTITUTION);
 
 		//Now eliminate overlap
 		let overlap = ball1.radius + ball2.radius - delPos.getNorm();
