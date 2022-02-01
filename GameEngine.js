@@ -195,11 +195,24 @@ class GameEngine{
 	}
 
 	declareWinner(winner_ps){
-		if(winner_ps == PS_SOLID) alert("Solids won!");
-		else if(winner_ps == PS_STRIPE) alert("Stripes won!");
-		else alert("No one won!")
+		if(winner_ps == PS_SOLID){
+			this.alertPlayers("Solids won!");
+		}
+		else if(winner_ps == PS_STRIPE){
+			this.alertPlayers("Stripes won!");
+		}
+		else this.alertPlayers("No one won!");
 
-		this.resetGameEngine();
+		let dupAlert = this.alertString;
+
+		this.drawAlertText();
+
+		setTimeout(function(){
+			alert(dupAlert);
+			this.resetGameEngine();
+		}, 200);
+
+		// this.resetGameEngine();
 	}
 
 	drawPoolTable(){
@@ -210,6 +223,10 @@ class GameEngine{
 		);
 
 		//Draw alert text
+		this.drawAlertText();
+	}
+
+	drawAlertText(){
 		this.canvas.canvasWriter.globalCompositeOperator = 'xor';
 		this.canvas.canvasWriter.fillStyle = '#2E4B38';
 		this.canvas.canvasWriter.font = "bold 30px sans-serif";
