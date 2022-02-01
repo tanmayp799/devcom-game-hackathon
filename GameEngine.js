@@ -40,8 +40,8 @@ class GameEngine{
 			this.balls.push(ball);
 		}
 
-		this.balls[0].x=D_CANVAS_W/5;
-		this.balls[0].y=D_CANVAS_H/2;
+		// this.balls[0].x=D_CANVAS_W/5;
+		// this.balls[0].y=D_CANVAS_H/2;
 	}
 
 	initCueStick(){
