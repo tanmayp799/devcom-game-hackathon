@@ -16,7 +16,7 @@ const D_MARGIN_INC = 0.0022 * D_CANVAS_H;
 const D_BOARD_MARGIN_X = 80*D_CANVAS_W/1500
 const D_BOARD_MARGIN_Y = D_CANVAS_H/10;
 
-const D_AIMLINE_WIDTH = 0.0054 * D_CANVAS_H;
+const D_AIMLINE_WIDTH = 0.003 * D_CANVAS_H;
 
 //============================================================================
 

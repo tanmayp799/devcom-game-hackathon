@@ -17,9 +17,8 @@ function main_loop(){
 	if(gameEngine.isPlaying()){
 		//Execute code for the situation when it's players turn to adjust cue and hit the white ball
 		gameEngine.drawCueStick();
-		gameEngine.old_drawAimLine();
-		// gameEngine.drawAimGuide();
-		gameEngine.drawBalls();
+		// gameEngine.old_drawAimLine();
+		gameEngine.drawAimGuide();
 	}
 	else if(gameEngine.isMoving()){
 		//Execute code for the situation when the balls are still moving

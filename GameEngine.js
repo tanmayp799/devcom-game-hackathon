@@ -245,22 +245,44 @@ class GameEngine{
 	
 		let rotationAngle = Math.atan2( (rPos.y - mousePos.y),-(mousePos.x - rPos.x) );
 		
-		let ghostBallPosition = this.getGhostBallPosition();
+		let drawingPositions = this.getDrawingPositions();
+		let ghostBallPosition = undefined;
+		let targetBallPosition = undefined;
+		let locAngle = undefined;
+		if(drawingPositions != undefined){
+			ghostBallPosition = drawingPositions.ghost;
+			targetBallPosition = drawingPositions.target;
+			locAngle = targetBallPosition.sum(ghostBallPosition.getNegation()).getAngleWithX();
+		}
 
-		ctx.setLineDash([10, 10]);
+
+		// ctx.setLineDash([9, 1]);
 		ctx.lineWidth = D_AIMLINE_WIDTH;
 		ctx.strokeStyle = 'white';
-			ctx.beginPath();
+		ctx.beginPath();
 		ctx.moveTo(rPos.x, rPos.y);
-		ctx.lineTo( ghostBallPosition.x, ghostBallPosition.y );
-		ctx.arc(ghostBallPosition.x, ghostBallPosition.y, this.balls[0].radius, 0, 2*Math.PI);
-		ctx.stroke();
+		if(ghostBallPosition == undefined){
+			ctx.lineTo(this.balls[0].x + 5000*Math.cos(rotationAngle), this.balls[0].y + 5000*Math.sin(rotationAngle));
+			ctx.stroke();
+		}else{
+			ctx.lineTo( ghostBallPosition.x, ghostBallPosition.y );
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.arc(ghostBallPosition.x, ghostBallPosition.y, this.balls[0].radius, 0, 2*Math.PI);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(targetBallPosition.x, targetBallPosition.y);
+			ctx.lineTo(targetBallPosition.x + 1.2*D_BALL_RADIUS*Math.cos(locAngle), targetBallPosition.y + 1.2*D_BALL_RADIUS*Math.sin(locAngle));
+			ctx.stroke();
+		}
 
 		// ctx.beginPath();
 		// ctx.stroke();
 	}
 
-	getGhostBallPosition(){
+	getDrawingPositions(){
 		let r_w = this.balls[0].getPosition_asVector2d();
 		let mousePos = {x: this.mouseX, y: this.mouseY};
 		let theta = Math.atan2( (r_w.y - mousePos.y),-(mousePos.x - r_w.x) );
@@ -275,6 +297,10 @@ class GameEngine{
 			let alpha = Math.asin( l_2/(this.balls[0].radius * 2) );
 			let beta = Math.asin( l_2/r_wt.getNorm() );
 
+			if(theta >= Math.PI/2 || theta <= -Math.PI/2){
+				alpha = -alpha;beta=-beta;
+			}
+
 			let r_wbar = r_wt.getUnitVector();
 			r_wbar.rotateBy(alpha - beta);
 			r_wbar = r_wbar.mult( 2*this.balls[0].radius );
@@ -284,7 +310,7 @@ class GameEngine{
 
 			if(r_wbar.sum(r_w.getNegation()).getNorm() < minDist){
 				minDist = tempDist;
-				finalRes = r_wbar;
+				finalRes = {ghost: r_wbar, target: r_t};
 			}
 		}
 
@@ -293,12 +319,12 @@ class GameEngine{
 
 	getPossibleTargets(r_w, theta){
 		let res = [];
+		let lineDirection = Vector2D.unitVectorAlong(theta);
 		for(let i = 1; i <= 15; i++){
 			if(this.balls[i].isOnBoard()){
-				let r_t = this.balls[i].getPosition_asVector2d();
+				let r_t = this.balls[i].getPosition_asVector2d(); let r_tw = r_t.sum(r_w.getNegation());
 
-				if( r_t.getDistanceFromLine(r_w, theta) < this.balls[i].radius + this.balls[0].radius ){ 
-					// if(){}
+				if( (Math.abs(r_t.getDistanceFromLine(r_w, theta)) < this.balls[i].radius + this.balls[0].radius) && (Vector2D.dot(lineDirection, r_tw) > 0) ){ 
 					res.push(r_t);
 				}
 			}
@@ -330,9 +356,6 @@ class GameEngine{
 
 		if(this.gameState == GS_PLAYING) {
 			this.updateCueStickAngle();
-			this.old_drawAimLine();
-			// this.drawAimGuide();
-			this.drawBalls();
 		}
 		if(this.gameState == GS_ADJUST_WHITEBALL) this.balls[0].setPosition({x: this.mouseX, y: this.mouseY});
 	}

@@ -15,8 +15,9 @@ class Vector2D {
 	}
 
 	rotateBy(theta){
-		this.x = (this.x * Math.cos(theta)) - (this.y * Math.sin(theta));
-		this.y = (this.x * Math.sin(theta)) + (this.y * Math.cos(theta));
+		let oldX = this.x;let oldY = this.y;
+		this.x = (oldX * Math.cos(theta)) - (oldY * Math.sin(theta));
+		this.y = (oldX * Math.sin(theta)) + (oldY * Math.cos(theta));
 	}
 
 	sum(y){
@@ -84,6 +85,10 @@ class Vector2D {
 		res.rotateBy(theta);
 
 		return res;
+	}
+
+	static dot(v1,v2){
+		return v1.x*v2.x + v1.y*v2.y;
 	}
 
 	static Zero(){
