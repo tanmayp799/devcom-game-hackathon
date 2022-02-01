@@ -10,6 +10,8 @@ class Ball {
 		this.onBoard = true;
 
 		this.selfImg = null;
+
+		this.sound = new sound(P_SOUND);
 	}
 
 	updatePosition(){
@@ -129,11 +131,17 @@ class Ball {
 		
 		if(this.x <= this.radius + D_BOARD_MARGIN_X || this.x >= D_CANVAS_W - D_BOARD_MARGIN_X - this.radius){
 			if(this.y <= D_BOARD_MARGIN_Y + this.radius + PHY_EPS || this.y >= D_CANVAS_H - D_BOARD_MARGIN_Y - this.radius - PHY_EPS) this.vx = this.vx;
-			else this.vx = -this.vx;
+			else {
+				this.sound.play();
+				this.vx = -this.vx;
+			}
 		}
 		if(this.y <= this.radius + D_BOARD_MARGIN_Y || this.y >= D_CANVAS_H - D_BOARD_MARGIN_Y - this.radius){
 			if(cornerPos.x <= D_BOARD_MARGIN_X + PHY_EPS || cornerPos.x >= D_CANVAS_W - D_BOARD_MARGIN_X - 2*this.radius - PHY_EPS || (cornerPos.x >= 715*D_CANVAS_W/1500 - PHY_EPS && cornerPos.x <= D_CANVAS_W/2 +PHY_EPS)) this.vy = this.vy;
-			else this.vy = -this.vy;
+			else {
+				this.vy = -this.vy;
+				this.sound.play();
+			}
 		}
 
 		let finalX = this.x + this.vx;let finalY = this.y + this.vy;

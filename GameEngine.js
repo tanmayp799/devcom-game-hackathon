@@ -7,9 +7,12 @@ class GameEngine{
 		this.balls = [];
 		this.cueStick = null;
 		this.aimLine = null;
+		this.CollisionSound = null;
 		this.poolTableBg = new Image();this.poolTableBg.src = P_POOL_TABLE;
 
 		this.gameState = GS_UNDEFINED;
+
+		this.CollisionSound = new sound(P_SOUND);
 
 		this.canvas = new Canvas2D();
 		this.canvas.init(_canvasId);
@@ -80,6 +83,7 @@ class GameEngine{
 	    if(keyCode == 83 && this.cueStick.margin > D_MIN_CUE_MARGIN) this.cueStick.margin -= D_MARGIN_INC;
 	    if(keyCode == 13) {
 	    	this.releaseCueStick();
+			this.CollisionSound.play();
 	    	console.clear();
 	    }
 	}
@@ -106,6 +110,7 @@ class GameEngine{
 		for(let i=0; i<= this.num_balls; i++){
 			for(let j = i + 1; j <= this.num_balls; j++){
 				if(this.balls[i].isCollidingWith(this.balls[j])){
+					this.CollisionSound.play();
 					let fV = Ball.stateAfterCollision(this.balls[i], this.balls[j]);
 					this.balls[i].setVelocity(fV.v1);this.balls[j].setVelocity(fV.v2);
 					this.balls[i].setPosition(fV.p1);this.balls[j].setPosition(fV.p2);

@@ -76,6 +76,8 @@ const P_CUESTICK = "./assets/cue_stick.png";
 
 const P_POOL_TABLE = "./assets/pool_table.png";
 
+const P_SOUND = "./assets/collisionSound4.mp3";
+
 
 //============================================================================
 
