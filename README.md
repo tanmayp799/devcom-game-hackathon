@@ -21,16 +21,16 @@ Made By:
     <li><h4> W : Increase Hit power.</h4></li>
     <li><h4> S : Decrease Hit power.</h4></li>
     <li><h4> Enter : Hit cue ball.</h4></li>
-    <li><h2>Left click : Fix the position of cue ball.</h2></li>
+    <li><h4>Left click : Fix the position of cue ball.</h4></li>
 </ul>
 
 <h2> Rules:</h2>
 <ul>
-    <li><h2>The game starts with Solid's turn.</h2></li>
-    <li><h2>If the cue ball is potted, it is a foul. Theother player is allowed to position the cue ball on the next move.</h2></li>
-    <li><h2>If a player(say stripes), pots the 8 ball before potting the other balls(stripes), the other player( solids) wins.</h2></li>
-    <li><h2>If no balls are potted during a player's turn, their turn ends.</h2></li>
-    <li><h2>If a player pots more of his/her own balls than the opponent's during his/her turn, then the player gets another chance. Otherwise, their turn ends.</h2></li>
+    <li><h4>The game starts with Solid's turn.</h4></li>
+    <li><h4>If the cue ball is potted, it is a foul. Theother player is allowed to position the cue ball on the next move.</h4></li>
+    <li><h4>If a player(say stripes), pots the 8 ball before potting the other balls(stripes), the other player( solids) wins.</h4></li>
+    <li><h4>If no balls are potted during a player's turn, their turn ends.</h4></li>
+    <li><h4>If a player pots more of his/her own balls than the opponent's during his/her turn, then the player gets another chance. Otherwise, their turn ends.</h4></li>
     
      
 
