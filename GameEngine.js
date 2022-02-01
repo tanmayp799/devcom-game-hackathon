@@ -84,7 +84,6 @@ class GameEngine{
 	    if(keyCode == 13) {
 	    	this.releaseCueStick();
 			this.CollisionSound.play();
-	    	console.clear();
 	    }
 	}
 	releaseCueStick(){
@@ -212,12 +211,12 @@ class GameEngine{
 
 		this.drawAlertText();
 
+		var dat = this;
+
 		setTimeout(function(){
 			alert(dupAlert);
-			this.resetGameEngine();
+			dat.resetGameEngine();
 		}, 200);
-
-		// this.resetGameEngine();
 	}
 
 	drawPoolTable(){
@@ -424,6 +423,7 @@ class GameEngine{
 	}
 
 	resetGameEngine(){
+		console.log("called resetGameEngine");
 		this.balls = [];this.initBalls();
 		this.cueStick = null;this.initCueStick();
 
